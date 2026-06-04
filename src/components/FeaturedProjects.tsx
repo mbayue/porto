@@ -37,7 +37,7 @@ export default function FeaturedProjects({ repositories }: FeaturedProjectsProps
       return "Backend & APIs";
     }
     if (name.includes("gitsdm") || name.includes("dbid") || name.includes("app") || name.includes("web") ||
-      name.includes("mobile") || name.includes("-fe")) {
+      name.includes("mobile") || name.includes("-fe") || name.includes("frontend") || name.includes("porto")) {
       return "Web & Mobile Apps";
     }
     if (name.includes("keking") || name.includes("bot") || name.includes("discord") || name.includes("jeta")) {
