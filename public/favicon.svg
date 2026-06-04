@@ -1,0 +1,18 @@
+﻿&lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot; viewBox=&quot;0 0 64 64&quot;&gt;
+  &lt;defs&gt;
+    &lt;linearGradient id=&quot;g&quot; x1=&quot;0&quot; x2=&quot;1&quot; y1=&quot;0&quot; y2=&quot;1&quot;&gt;
+      &lt;stop stop-color=&quot;#10b981&quot;/&gt;
+      &lt;stop offset=&quot;1&quot; stop-color=&quot;#22d3ee&quot;/&gt;
+    &lt;/linearGradient&gt;
+    &lt;filter id=&quot;s&quot; x=&quot;-20%&quot; y=&quot;-20%&quot; width=&quot;140%&quot; height=&quot;140%&quot;&gt;
+      &lt;feDropShadow dx=&quot;0&quot; dy=&quot;2&quot; stdDeviation=&quot;2&quot; flood-color=&quot;#000&quot; flood-opacity=&quot;.45&quot;/&gt;
+    &lt;/filter&gt;
+  &lt;/defs&gt;
+  &lt;rect width=&quot;64&quot; height=&quot;64&quot; rx=&quot;14&quot; fill=&quot;#0f172a&quot;/&gt;
+  &lt;rect x=&quot;7&quot; y=&quot;10&quot; width=&quot;50&quot; height=&quot;44&quot; rx=&quot;8&quot; fill=&quot;#020617&quot; stroke=&quot;url(#g)&quot; stroke-width=&quot;2&quot;/&gt;
+  &lt;circle cx=&quot;16&quot; cy=&quot;19&quot; r=&quot;2.5&quot; fill=&quot;#ef4444&quot;/&gt;
+  &lt;circle cx=&quot;24&quot; cy=&quot;19&quot; r=&quot;2.5&quot; fill=&quot;#f59e0b&quot;/&gt;
+  &lt;circle cx=&quot;32&quot; cy=&quot;19&quot; r=&quot;2.5&quot; fill=&quot;#10b981&quot;/&gt;
+  &lt;path d=&quot;M17 35l7-6-7-6&quot; fill=&quot;none&quot; stroke=&quot;#10b981&quot; stroke-width=&quot;4&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot; filter=&quot;url(#s)&quot;/&gt;
+  &lt;path d=&quot;M29 39h16&quot; stroke=&quot;#e2e8f0&quot; stroke-width=&quot;4&quot; stroke-linecap=&quot;round&quot; filter=&quot;url(#s)&quot;/&gt;
+&lt;/svg&gt;
