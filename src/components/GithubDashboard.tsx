@@ -28,6 +28,7 @@ interface GithubDashboardProps {
     forksCount: number;
     languages: LanguageStat[];
   };
+  contributionCells: { level: number; count: number; date: string }[];
 }
 
 // Generate colors for languages
@@ -42,23 +43,7 @@ const LANGUAGE_COLORS: Record<string, string> = {
   Java: "#b07219",
 };
 
-export default function GithubDashboard({ user, stats }: GithubDashboardProps) {
-  // Generate mock contribution calendar data (7 days x 45 weeks = 315 cells)
-  const contributionCells = React.useMemo(() => {
-    const cells: number[] = [];
-    // Seed with pseudo-random values to make it look like a real commit history
-    for (let i = 0; i < 7 * 45; i++) {
-      const hash = Math.sin(i) * 10000;
-      const rand = hash - Math.floor(hash);
-      // Create active levels and empty days
-      if (rand > 0.45) {
-        cells.push(Math.floor(rand * 5)); // 0 to 4
-      } else {
-        cells.push(0);
-      }
-    }
-    return cells;
-  }, []);
+export default function GithubDashboard({ user, stats, contributionCells }: GithubDashboardProps) {
 
   const getIntensityColor = (level: number) => {
     switch (level) {
@@ -215,15 +200,20 @@ export default function GithubDashboard({ user, stats }: GithubDashboardProps) {
                 className="grid grid-flow-col gap-1 w-max mx-auto"
                 style={{ gridTemplateRows: "repeat(7, minmax(0, 1fr))" }}
               >
-                {contributionCells.map((level, idx) => (
+                {contributionCells.map((cell, idx) => {
+                  const tooltipText = cell.date 
+                    ? `${cell.count} contributions on ${new Date(cell.date).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}` 
+                    : "No contributions";
+                  return (
                   <div
                     key={idx}
                     className={`w-3 h-3 rounded-sm border ${getIntensityColor(
-                      level
+                      cell.level
                     )} transition-all duration-300 hover:scale-125 hover:z-10 cursor-crosshair`}
-                    title={`Activity level: ${level}`}
+                    title={tooltipText}
                   />
-                ))}
+                  );
+                })}
               </div>
             </div>
 

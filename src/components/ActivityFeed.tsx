@@ -36,7 +36,7 @@ export default function ActivityFeed({ events }: ActivityFeedProps) {
   // Format dates
   const formatTimeAgo = (dateStr: string) => {
     const eventDate = new Date(dateStr);
-    const now = new Date("2026-06-04T11:43:31+07:00"); // Use current context time
+    const now = new Date();
     const diffMs = now.getTime() - eventDate.getTime();
     const diffHours = Math.floor(diffMs / (1000 * 60 * 60));
     const diffDays = Math.floor(diffHours / 24);

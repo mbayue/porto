@@ -56,6 +56,15 @@ interface GitEvent {
   };
 }
 
+interface ContributionDay {
+  contributionCount: number;
+  date: string;
+}
+
+interface ContributionWeek {
+  contributionDays: ContributionDay[];
+}
+
 async function getCommitMessage(repoName: string, sha: string, headers: Record<string, string>) {
   try {
     const res = await fetch(`https://api.github.com/repos/${repoName}/commits/${sha}`, {
@@ -108,11 +117,72 @@ async function getGithubData() {
     })
   );
 
-  return { user, repos, events: enrichedEvents };
+  // Fetch Contribution Calendar via GraphQL
+  const graphqlQuery = `
+    query {
+      user(login: "bayue48") {
+        contributionsCollection {
+          contributionCalendar {
+            totalContributions
+            weeks {
+              contributionDays {
+                contributionCount
+                date
+              }
+            }
+          }
+        }
+      }
+    }
+  `;
+
+  let contributionCells: { level: number; count: number; date: string }[] = [];
+  try {
+    const gqlRes = await fetch("https://api.github.com/graphql", {
+      method: "POST",
+      headers,
+      body: JSON.stringify({ query: graphqlQuery }),
+      next: { revalidate: 3600 },
+    });
+
+    if (gqlRes.ok) {
+      const gqlData = await gqlRes.json();
+      const weeks = gqlData.data.user.contributionsCollection.contributionCalendar.weeks;
+      
+      // Flatten the weeks array into a single array of contribution counts
+      weeks.forEach((week: ContributionWeek) => {
+        week.contributionDays.forEach((day: ContributionDay) => {
+          // Map exact contribution counts to our 0-4 intensity scale for the UI
+          let level = 0;
+          const count = day.contributionCount;
+          if (count > 0 && count <= 3) level = 1;
+          else if (count > 3 && count <= 6) level = 2;
+          else if (count > 6 && count <= 10) level = 3;
+          else if (count > 10) level = 4;
+          
+          contributionCells.push({ level, count, date: day.date });
+        });
+      });
+
+      // Github dashboard expects exactly 315 cells (45 weeks * 7 days)
+      // Pad or slice to match expected length
+      if (contributionCells.length > 315) {
+        contributionCells = contributionCells.slice(-315);
+      } else while (contributionCells.length < 315) {
+        contributionCells.unshift({ level: 0, count: 0, date: "" }); // Pad start with empty
+      }
+    }
+  } catch (e) {
+    console.error("Failed to fetch GraphQL contributions", e);
+    // Fallback to empty
+    contributionCells = Array(315).fill({ level: 0, count: 0, date: "" });
+  }
+
+  return { user, repos, events: enrichedEvents, contributionCells };
 }
 
 export default async function Page() {
-  const { user, repos, events } = await getGithubData();
+  const { user, repos, events, contributionCells } = await getGithubData();
 
   // 1. Process Repository Statistics
   const typedRepos = repos as Repository[];
@@ -291,7 +361,7 @@ export default async function Page() {
             </div>
 
             <div className="lg:col-span-8">
-              <GithubDashboard user={userDetails} stats={processedStats} />
+              <GithubDashboard user={userDetails} stats={processedStats} contributionCells={contributionCells} />
             </div>
           </div>
         </section>

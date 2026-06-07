@@ -92,16 +92,15 @@ export default function FeaturedProjects({ repositories }: FeaturedProjectsProps
       {/* Grid of Projects */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         <AnimatePresence>
-          {filteredRepos.map((repo) => {
+          {filteredRepos.map((repo, idx) => {
             const projectCategory = categorizeProject(repo.name);
             return (
               <motion.div
-                key={repo.name}
+                key={`${activeTab}-${repo.name}`}
                 initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: 10 }}
-                transition={{ duration: 0.2, ease: "easeOut" }}
-                viewport={{ once: true }}
+                transition={{ delay: Math.min(idx * 0.04, 0.4), duration: 0.3 }}
                 onClick={() => setSelectedProject(repo)}
                 className="group relative flex flex-col justify-between bg-slate-900/40 border border-slate-800 hover:border-emerald-500/50 p-5 rounded-xl cursor-pointer transition-all duration-300 hover:bg-slate-900/80 hover:-translate-y-0.5 shadow-md hover:shadow-lg"
               >
