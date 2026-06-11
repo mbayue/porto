@@ -79,7 +79,7 @@ export default function TerminalHero() {
           <div className="space-y-2 text-slate-300 text-sm leading-relaxed">
             <p className="text-emerald-400 font-bold">Biography:</p>
             <p>
-              I am a **Jakarta-based developer** who builds web systems, scrapers, and automation scripts.
+              I am a **Bandung-based developer** who builds web systems, scrapers, and automation scripts.
               My bio is <span className="italic text-emerald-300">{'"pull stuck overflow dev"'}</span> — reflecting a relentless drive to solve tricky bugs, piece complex APIs together, and ship clean projects.
             </p>
             <p>

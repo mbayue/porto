@@ -15,17 +15,17 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: "Bayu Erich | Web & Automation Developer",
+  title: "Bayu Erich | Backend Engineer",
   description: "Developer portfolio of Bayu Erich (bayue48), showing AI repository visualization, automation bots, scraping, and backend system utilities.",
   icons: {
     icon: "/favicon.svg",
     shortcut: "/favicon.svg",
     apple: "/favicon.svg",
   },
-  keywords: ["Bayu Erich", "bayue48", "portfolio", "nextjs", "typescript", "discord bots", "scraping", "web developer", "jakarta"],
+  keywords: ["Bayu Erich", "bayue48", "portfolio", "nextjs", "typescript", "discord bots", "scraping", "web developer", "backend engineer"],
   authors: [{ name: "Bayu Erich", url: "https://github.com/bayue48" }],
   openGraph: {
-    title: "Bayu Erich | Web & Automation Developer",
+    title: "Bayu Erich | Backend Engineer",
     description: "Developer portfolio of Bayu Erich (bayue48), showing AI repository visualization, automation bots, scraping, and backend system utilities.",
     url: "https://bayue.netlify.app",
     type: "website",

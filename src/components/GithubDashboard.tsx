@@ -220,7 +220,7 @@ export default function GithubDashboard({ user, stats, contributionCells }: Gith
             {/* Calendar Legend */}
             <div className="flex justify-between items-center mt-4 text-xs font-mono text-slate-500">
               <div className="flex gap-2">
-                <span>Location: {user.location || "Jakarta, ID"}</span>
+                <span>Location: {user.location || "Bandung, ID"}</span>
               </div>
               <div className="flex items-center gap-1.5 select-none">
                 <span>Less</span>

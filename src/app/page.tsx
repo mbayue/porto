@@ -217,7 +217,7 @@ export default async function Page() {
     public_repos: user.public_repos,
     followers: user.followers,
     following: user.following,
-    location: user.location || "Jakarta, Indonesia",
+    location: user.location || "Bandung, Indonesia",
     blog: user.blog || "bayue.netlify.app",
   };
 
@@ -285,13 +285,13 @@ export default async function Page() {
           <div className="text-center space-y-4 max-w-3xl mx-auto">
             <div className="inline-flex items-center gap-2 px-3 py-1 bg-slate-900 border border-slate-800 rounded-full text-[11px] font-mono text-emerald-400">
               <Sparkles className="w-3.5 h-3.5" />
-              <span>Full-Stack Web & Automation Engineer</span>
+              <span>Backend Engineer</span>
             </div>
             <h1 className="text-4xl md:text-6xl font-heading font-black tracking-tight text-slate-100 leading-none">
               Bayu Erich
             </h1>
             <p className="text-slate-400 font-body text-sm md:text-base leading-relaxed">
-              Jakarta-based builder crafting interactive visualization tools, scraping pipelines, and automation systems. Persistent debugger, microservice organizer.
+              Bandung-based builder crafting interactive visualization tools, scraping pipelines, and automation systems. Persistent debugger, microservice organizer.
             </p>
           </div>
 
