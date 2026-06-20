@@ -97,7 +97,9 @@ export default function ActivityFeed({ events }: ActivityFeedProps) {
     }
   };
 
-  // Keep first 12 original events to show active timeline
+  const [showAll, setShowAll] = useState(false);
+
+  // Keep first 15 original events to show active timeline max
   const processedEvents = events
     .slice(0, 15)
     .map((e) => ({ ...e, details: getEventDetails(e) }));
@@ -106,6 +108,8 @@ export default function ActivityFeed({ events }: ActivityFeedProps) {
     if (filterType === "All") return true;
     return e.details.badge === filterType;
   });
+
+  const displayedEvents = showAll ? filteredEvents : filteredEvents.slice(0, 5);
 
   return (
     <div className="space-y-6">
@@ -121,7 +125,7 @@ export default function ActivityFeed({ events }: ActivityFeedProps) {
           {["All", "Commit", "Star", "Create"].map((type) => (
             <button
               key={type}
-              onClick={() => setFilterType(type)}
+              onClick={() => { setFilterType(type); setShowAll(false); }}
               className={`px-2.5 py-1 border rounded cursor-pointer transition-all duration-200 ${filterType === type
                   ? "bg-emerald-500/15 border-emerald-500/50 text-emerald-400 font-bold"
                   : "bg-slate-950 border-slate-900 text-slate-500 hover:text-slate-355"
@@ -134,8 +138,8 @@ export default function ActivityFeed({ events }: ActivityFeedProps) {
       </div>
 
       {/* Timeline Stream */}
-      <div className="relative border-l border-slate-850 ml-3 md:ml-4 pl-6 md:pl-8 space-y-5 py-2">
-        {filteredEvents.map((item, idx) => (
+      <div className="relative border-l border-slate-800 ml-3 md:ml-4 pl-6 md:pl-8 space-y-4 py-2">
+        {displayedEvents.map((item, idx) => (
           <motion.div
             key={item.id}
             initial={{ opacity: 0, y: 10 }}
@@ -145,23 +149,23 @@ export default function ActivityFeed({ events }: ActivityFeedProps) {
             className="relative group"
           >
             {/* Timeline bullet dot */}
-            <div className={`absolute -left-[37px] md:-left-[45px] top-1.5 w-6.5 h-6.5 rounded-full bg-slate-950 border-2 transition-all duration-300 flex items-center justify-center z-10 shadow-md ${item.details.badge === "Commit" ? "border-emerald-500/30 group-hover:border-emerald-500 group-hover:shadow-[0_0_10px_rgba(16,185,129,0.15)]" :
-                item.details.badge === "Star" ? "border-amber-500/30 group-hover:border-amber-500 group-hover:shadow-[0_0_10px_rgba(245,158,11,0.15)]" :
-                  "border-blue-500/30 group-hover:border-blue-500 group-hover:shadow-[0_0_10px_rgba(59,130,246,0.15)]"
+            <div className={`absolute -left-[37px] md:-left-[45px] top-3 w-6 h-6 rounded-full bg-slate-950 border transition-all duration-300 flex items-center justify-center z-10 shadow-sm ${item.details.badge === "Commit" ? "border-emerald-500/40 group-hover:border-emerald-500 group-hover:shadow-[0_0_8px_rgba(16,185,129,0.2)]" :
+                item.details.badge === "Star" ? "border-amber-500/40 group-hover:border-amber-500 group-hover:shadow-[0_0_8px_rgba(245,158,11,0.2)]" :
+                  "border-blue-500/40 group-hover:border-blue-500 group-hover:shadow-[0_0_8px_rgba(59,130,246,0.2)]"
               }`}>
-              {item.details.icon}
+              {React.cloneElement(item.details.icon as React.ReactElement<{ className?: string }>, { className: "w-3 h-3" })}
             </div>
 
             {/* Timeline Card content */}
-            <div className="bg-slate-900/10 border border-slate-850/60 p-4 rounded-xl flex flex-col sm:flex-row sm:items-start justify-between gap-3 group-hover:bg-slate-900/20 group-hover:border-slate-800 transition-all duration-300 shadow-sm">
+            <div className="bg-slate-900/10 border border-slate-850/60 p-3.5 rounded-lg flex flex-col sm:flex-row sm:items-start justify-between gap-3 group-hover:bg-slate-900/30 group-hover:border-slate-800 transition-all duration-300 shadow-sm">
               <div className="space-y-1.5 flex-1 min-w-0">
                 <div className="flex items-center gap-2 flex-wrap">
-                  <h5 className="font-heading font-semibold text-slate-200 text-sm group-hover:text-emerald-450 transition-colors duration-305">
+                  <h5 className="font-heading font-semibold text-slate-200 text-sm group-hover:text-emerald-400 transition-colors duration-200">
                     {item.details.title}
                   </h5>
-                  <span className={`text-[9px] px-1.5 py-0.2 rounded font-mono border ${item.details.badge === "Commit" ? "bg-emerald-500/10 border-emerald-500/20 text-emerald-450" :
-                      item.details.badge === "Star" ? "bg-amber-500/10 border-amber-500/20 text-amber-450" :
-                        "bg-blue-500/10 border-blue-500/20 text-blue-450"
+                  <span className={`text-[9px] px-1.5 py-0.5 rounded font-mono border ${item.details.badge === "Commit" ? "bg-emerald-500/10 border-emerald-500/20 text-emerald-400" :
+                      item.details.badge === "Star" ? "bg-amber-500/10 border-amber-500/20 text-amber-400" :
+                        "bg-blue-500/10 border-blue-500/20 text-blue-400"
                     }`}>
                     {item.details.badge}
                   </span>
@@ -172,16 +176,16 @@ export default function ActivityFeed({ events }: ActivityFeedProps) {
 
                 {/* Show commit command box ONLY for commits */}
                 {item.details.badge === "Commit" && (
-                  <div className="flex items-center gap-2 mt-2.5 text-[11px] font-mono text-slate-350 bg-slate-950/70 py-1.5 px-3 border border-slate-900/80 rounded-lg w-fit max-w-full overflow-hidden">
+                  <div className="flex items-center gap-1.5 mt-2 text-[11px] font-mono text-slate-400 bg-slate-950/70 py-1 px-2.5 border border-slate-900/80 rounded w-fit max-w-full overflow-hidden">
                     <span className="text-emerald-500 font-bold shrink-0">$</span>
                     <span className="text-slate-500 shrink-0">git commit -m</span>
-                    <span className="text-slate-200 truncate">{`"${item.details.description}"`}</span>
+                    <span className="text-slate-300 truncate">{`"${item.details.description}"`}</span>
                   </div>
                 )}
               </div>
 
-              <div className="flex items-center gap-1 text-[10px] text-slate-500 font-mono shrink-0 self-end sm:self-start">
-                <Calendar className="w-3.5 h-3.5" />
+              <div className="flex items-center gap-1 text-[10px] text-slate-500 font-mono shrink-0 self-end sm:self-start pt-1">
+                <Calendar className="w-3 h-3" />
                 <span>{item.details.time}</span>
               </div>
             </div>
@@ -194,6 +198,19 @@ export default function ActivityFeed({ events }: ActivityFeedProps) {
           </div>
         )}
       </div>
+
+      {filteredEvents.length > 5 && (
+        <div className="pt-2 text-center">
+          <a
+            href="https://github.com/bayue48"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block px-4 py-2 border border-slate-800 hover:border-emerald-500/50 bg-slate-900/30 hover:bg-slate-900 text-slate-400 hover:text-emerald-400 text-xs font-mono rounded-lg transition-all duration-200 cursor-pointer"
+          >
+            View Full Activity on GitHub
+          </a>
+        </div>
+      )}
     </div>
   );
 }

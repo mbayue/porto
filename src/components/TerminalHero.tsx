@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Terminal, CornerDownLeft, Circle } from "lucide-react";
 import { motion } from "framer-motion";
+import { profile } from "@/data/profile";
 
 interface CommandHistory {
   command: string;
@@ -15,7 +16,7 @@ export default function TerminalHero() {
   const inputRef = useRef<HTMLInputElement>(null);
 
   const welcomeMessage = (
-    <div className="space-y-1 text-slate-300">
+    <div className="space-y-1 text-slate-200">
       <p className="text-emerald-400 font-bold font-heading text-lg md:text-xl">
         &gt; INITIALIZING BAYU_ERICH_SHELL v1.4.8_STABLE
       </p>
@@ -23,11 +24,11 @@ export default function TerminalHero() {
         Type <span className="text-emerald-400 font-mono">help</span> to view available commands. Click suggestions to execute them.
       </p>
       <div className="flex flex-wrap gap-2 pt-2">
-        {["help", "about", "projects", "skills", "secret"].map((cmd) => (
+        {["help", "about", "work", "stack", "projects", "contact", "clear"].map((cmd) => (
           <button
             key={cmd}
             onClick={() => handleCommandRun(cmd)}
-            className="px-2 py-0.5 bg-slate-800 hover:bg-emerald-500/20 border border-slate-700 hover:border-emerald-500/50 text-slate-300 hover:text-emerald-400 text-xs font-mono rounded cursor-pointer transition-all duration-200"
+            className="px-2 py-0.5 bg-slate-800 hover:bg-emerald-500/20 border border-slate-700 hover:border-emerald-500/50 text-slate-200 hover:text-emerald-400 text-xs font-mono rounded cursor-pointer transition-all duration-200"
           >
             {cmd}
           </button>
@@ -62,28 +63,45 @@ export default function TerminalHero() {
     switch (trimmed) {
       case "help":
         output = (
-          <div className="space-y-1 text-slate-300 font-mono text-sm">
+          <div className="space-y-1 text-slate-200 font-mono text-sm">
             <p className="text-emerald-400 font-bold mb-1">Available Commands:</p>
-            <p><span className="text-emerald-300 font-semibold min-w-[100px] inline-block">about</span>- Who is Bayu Erich?</p>
-            <p><span className="text-emerald-300 font-semibold min-w-[100px] inline-block">projects</span>- Highlighted public repositories & stats</p>
-            <p><span className="text-emerald-300 font-semibold min-w-[100px] inline-block">skills</span>- Technical stack & capabilities</p>
-            <p><span className="text-emerald-300 font-semibold min-w-[100px] inline-block">activity</span>- Recent Git contributions overview</p>
+            <p><span className="text-emerald-300 font-semibold min-w-[100px] inline-block">about</span>- Who is {profile.shortName}?</p>
+            <p><span className="text-emerald-300 font-semibold min-w-[100px] inline-block">work</span>- Past experience</p>
+            <p><span className="text-emerald-300 font-semibold min-w-[100px] inline-block">stack</span>- Tools and technologies</p>
+            <p><span className="text-emerald-300 font-semibold min-w-[100px] inline-block">projects</span>- Highlighted public repositories</p>
+            <p><span className="text-emerald-300 font-semibold min-w-[100px] inline-block">contact</span>- Reach out</p>
             <p><span className="text-emerald-300 font-semibold min-w-[100px] inline-block">clear</span>- Clear terminal log screen</p>
-            <p><span className="text-emerald-300 font-semibold min-w-[100px] inline-block">secret</span>- Reveal profile easter egg</p>
           </div>
         );
         break;
 
       case "about":
         output = (
-          <div className="space-y-2 text-slate-300 text-sm leading-relaxed">
-            <p className="text-emerald-400 font-bold">Biography:</p>
+          <div className="space-y-2 text-slate-200 text-sm leading-relaxed">
             <p>
-              I am a **Bandung-based developer** who builds web systems, scrapers, and automation scripts.
-              My bio is <span className="italic text-emerald-300">{'"pull stuck overflow dev"'}</span> — reflecting a relentless drive to solve tricky bugs, piece complex APIs together, and ship clean projects.
+              Backend engineer from Indonesia. I work mostly on APIs, databases, server maintenance, and practical tools.
             </p>
+          </div>
+        );
+        break;
+        
+      case "work":
+      case "experience":
+        output = (
+          <div className="space-y-1 text-slate-200 text-sm leading-relaxed">
             <p>
-              Currently focus: Frontend visualizations (Next.js/React/TypeScript), scalable scrapers (Python), and Discord automation microservices.
+              Previously worked on Orderfaz, Apikurir, SINSW, PJKEK, and SINAS NK.
+            </p>
+          </div>
+        );
+        break;
+
+      case "stack":
+      case "skills":
+        output = (
+          <div className="space-y-1 text-slate-200 text-sm leading-relaxed">
+            <p>
+              Go, JavaScript, PostgreSQL, MongoDB, MySQL, AWS, and GCP.
             </p>
           </div>
         );
@@ -91,56 +109,28 @@ export default function TerminalHero() {
 
       case "projects":
         output = (
-          <div className="space-y-2 text-slate-300 text-sm font-mono">
-            <p className="text-emerald-400 font-bold">Featured Projects:</p>
-            <div className="space-y-2 border-l border-slate-700 pl-3 ml-1">
-              <div>
-                <p className="text-emerald-300 font-bold">1. gitSdm</p>
-                <p className="text-slate-400">AI-powered repository visualizer & graph analyzer. Stack: TS / Next.js</p>
-              </div>
-              <div>
-                <p className="text-emerald-300 font-bold">2. keking</p>
-                <p className="text-slate-400">Advanced Discord music player bot reboot with custom styled Embed overlays.</p>
-              </div>
-              <div>
-                <p className="text-emerald-300 font-bold">3. pia-scrap</p>
-                <p className="text-slate-400">Python-based scrap tool exporting Web Novels to clean, custom EPUB structures.</p>
-              </div>
-              <div>
-                <p className="text-emerald-300 font-bold">4. xfa</p>
-                <p className="text-slate-400">Specialized Node.js preview corrector for social shares (Discord, FB link cards).</p>
-              </div>
-            </div>
+          <div className="space-y-1 text-slate-200 text-sm leading-relaxed">
+            <p>
+              I like building tools around automation, repository visualization, scraping, and Discord bots.
+            </p>
             <p className="text-slate-400 text-xs mt-2 italic">Scroll down to see the visual card grids for more details.</p>
           </div>
         );
         break;
 
-      case "skills":
+      case "contact":
         output = (
-          <div className="space-y-2 text-slate-300 text-sm font-mono">
-            <p className="text-emerald-400 font-bold">Technical Skill Tree:</p>
-            <p><span className="text-emerald-300">Languages:</span> JavaScript (ES6+), TypeScript, Python, Go, HTML, CSS</p>
-            <p><span className="text-emerald-300">Frameworks:</span> Next.js 15, React, Node.js (Express), Tailwind CSS</p>
-            <p><span className="text-emerald-300">Tools & Libs:</span> Framer Motion, Discord.js, BeautifulSoup4, Git/GitHub</p>
-          </div>
-        );
-        break;
-
-      case "activity":
-        output = (
-          <div className="space-y-1 text-slate-300 text-sm font-mono">
-            <p className="text-emerald-400 font-bold">Git Activity Summary:</p>
-            <p>• Pushed updates to <span className="text-emerald-300">bayue48/keking</span> (June 2026)</p>
-            <p>• Pushed updates to <span className="text-emerald-300">bayue48/xrd</span> (June 2026)</p>
-            <p>• Created and launched <span className="text-emerald-300">bayue48/xfa</span> server (May 2026)</p>
-            <p>• Active contributions in repository analysis dashboards.</p>
+          <div className="space-y-1 text-slate-200 text-sm leading-relaxed">
+            <p>
+              Available for backend engineering opportunities and collaboration. 
+              Email me at: <span className="text-emerald-400">{profile.email}</span>
+            </p>
           </div>
         );
         break;
 
       case "clear":
-        setHistory([]);
+        setHistory([{ command: "system_init", output: welcomeMessage }]);
         setInput("");
         return;
 
@@ -148,7 +138,7 @@ export default function TerminalHero() {
         output = (
           <div className="p-3 bg-emerald-950/30 border border-emerald-500/30 rounded text-emerald-400 font-mono text-xs md:text-sm">
             <p className="font-bold mb-1">🎉 SUCCESS: Easter Egg Unlocked!</p>
-            <p className="text-slate-300 italic mb-2">{'"pull stuck, copy-pasta overflow dev"'}</p>
+            <p className="text-slate-200 italic mb-2">{'"pull stuck, copy-pasta overflow dev"'}</p>
             <p className="text-slate-400 text-xs">
               Meaning: Even when git pulls get stuck, Stack Overflow tabs pile up, and copy-paste almost works, a developer keeps coding, debugging, adapting and resolving issues with persistence.
             </p>
@@ -194,7 +184,7 @@ export default function TerminalHero() {
       <div
         ref={terminalStreamRef}
         onClick={focusInput}
-        className="h-80 md:h-[26rem] p-4 bg-slate-950/80 font-mono text-sm overflow-y-auto cursor-text select-text"
+        className="h-64 md:h-80 p-4 bg-slate-950/80 font-mono text-sm md:text-base overflow-y-auto cursor-text select-text"
       >
         <div className="space-y-4">
           {history.map((item, idx) => (
@@ -221,7 +211,7 @@ export default function TerminalHero() {
       {/* Terminal Input Line */}
       <div
         onClick={focusInput}
-        className="flex items-center gap-2 px-4 py-3 bg-slate-950/95 border-t border-slate-900 font-mono text-sm text-emerald-400 cursor-text"
+        className="flex items-center gap-2 px-4 py-3 bg-slate-950/95 border-t border-slate-900 font-mono text-sm md:text-base text-emerald-400 cursor-text"
       >
         <span className="text-slate-500 font-bold shrink-0 select-none">visitor@bayue48:~$</span>
         <input

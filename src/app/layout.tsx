@@ -15,18 +15,18 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: "Bayu Erich | Backend Engineer",
-  description: "Developer portfolio of Bayu Erich (bayue48), showing AI repository visualization, automation bots, scraping, and backend system utilities.",
+  title: "Bayu Erich — Backend Engineer",
+  description: "Portfolio and CV of Bayu Erich, Backend Engineer focused on APIs, databases, cloud deployment, and automation.",
   icons: {
     icon: "/favicon.svg",
     shortcut: "/favicon.svg",
     apple: "/favicon.svg",
   },
-  keywords: ["Bayu Erich", "bayue48", "portfolio", "nextjs", "typescript", "discord bots", "scraping", "web developer", "backend engineer"],
+  keywords: ["Bayu Erich", "bayue48", "portfolio", "nextjs", "typescript", "backend engineer", "go", "nodejs", "databases"],
   authors: [{ name: "Bayu Erich", url: "https://github.com/bayue48" }],
   openGraph: {
-    title: "Bayu Erich | Backend Engineer",
-    description: "Developer portfolio of Bayu Erich (bayue48), showing AI repository visualization, automation bots, scraping, and backend system utilities.",
+    title: "Bayu Erich — Backend Engineer",
+    description: "Portfolio and CV of Bayu Erich, Backend Engineer focused on APIs, databases, cloud deployment, and automation.",
     url: "https://bayue.netlify.app",
     type: "website",
   },

@@ -25,6 +25,15 @@ interface FeaturedProjectsProps {
 
 const CATEGORIES = ["All", "Web & Mobile Apps", "Backend & APIs", "Bots & Automation", "Scrapers & Tools", "Other"];
 
+const PROJECT_OVERRIDES: Record<string, { desc: string, stack: string[] }> = {
+  "gitSdm": { desc: "A tool I built to visualize repository structure and understand codebases faster. It helps explore files, dependencies, and project architecture in a more visual way.", stack: ["TypeScript", "Next.js", "AI"] },
+  "pia-scrap": { desc: "A Python-based scraper and automation tool for collecting web content and turning it into a cleaner EPUB workflow.", stack: ["Python", "BS4", "Epub"] },
+  "keking": { desc: "A Discord music bot project where I experimented with bot commands, playback features, and community server utilities.", stack: ["Node.js", "Discord.js"] },
+  "keking-bot": { desc: "Original Discord bot for music and server management, handling high concurrency.", stack: ["Node.js", "Discord.js"] },
+  "xrd": { desc: "A small React-based Discord utility project for working with role and command-related flows.", stack: ["TypeScript", "Node.js"] },
+  "xfa": { desc: "A Node.js-based worker and toolset around Discord/file workflows and automation experiments.", stack: ["Node.js", "Express"] },
+};
+
 export default function FeaturedProjects({ repositories }: FeaturedProjectsProps) {
   const [activeTab, setActiveTab] = useState("All");
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
@@ -73,12 +82,12 @@ export default function FeaturedProjects({ repositories }: FeaturedProjectsProps
   return (
     <div className="space-y-6">
       {/* Category selection tabs */}
-      <div className="flex flex-wrap gap-2 justify-center sm:justify-start">
+      <div className="flex overflow-x-auto hide-scrollbar gap-2 pb-2 -mx-4 px-4 sm:mx-0 sm:px-0 sm:pb-0 sm:flex-wrap sm:overflow-visible">
         {CATEGORIES.map((tab) => (
           <button
             key={tab}
             onClick={() => setActiveTab(tab)}
-            className={`flex items-center gap-1.5 px-4 py-2 border rounded-lg font-mono text-xs font-semibold cursor-pointer transition-all duration-200 ${activeTab === tab
+            className={`flex items-center gap-1.5 px-4 py-2 border rounded-lg font-mono text-xs font-semibold cursor-pointer transition-all duration-200 whitespace-nowrap shrink-0 ${activeTab === tab
               ? "bg-emerald-500 border-emerald-500 text-white shadow-md glow-border"
               : "bg-slate-900/60 border-slate-800 text-slate-400 hover:text-slate-200 hover:border-slate-700"
               }`}
@@ -128,9 +137,19 @@ export default function FeaturedProjects({ repositories }: FeaturedProjectsProps
                     {repo.name}
                   </h4>
 
-                  <p className="text-slate-400 text-xs md:text-sm line-clamp-3 leading-relaxed font-body">
-                    {repo.description || "No repository description has been configured."}
+                  <p className="text-slate-300 text-sm md:text-base line-clamp-3 leading-loose font-body">
+                    {PROJECT_OVERRIDES[repo.name]?.desc || repo.description || "No repository description has been configured."}
                   </p>
+
+                  {PROJECT_OVERRIDES[repo.name]?.stack && (
+                    <div className="flex flex-wrap gap-1.5 pt-1">
+                      {PROJECT_OVERRIDES[repo.name].stack.map((tech) => (
+                        <span key={tech} className="px-1.5 py-0.5 bg-slate-950 border border-slate-800 rounded text-[10px] font-mono text-slate-400">
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  )}
                 </div>
 
                 <div className="flex items-center justify-between mt-5 pt-3 border-t border-slate-850">

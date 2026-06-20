@@ -18,34 +18,32 @@ interface SkillCategory {
 
 const SKILL_TREE: SkillCategory[] = [
   {
-    title: "Frontend Engineering",
-    icon: <Layout className="w-4 h-4 text-sky-400" />,
-    skills: [
-      { name: "TypeScript", level: 90, info: "Type safety, class models, generic frameworks" },
-      { name: "Next.js", level: 85, info: "App Router, Static Gen, hydration tuning" },
-      { name: "React.js", level: 90, info: "Custom hooks, Context API, state machines" },
-      { name: "Tailwind CSS", level: 95, info: "Responsive utilities, theme setups, styling" },
-      { name: "JavaScript (ES6+)", level: 95, info: "DOM, async/await, modules, event loop" },
-    ],
-  },
-  {
-    title: "Backend & Systems",
+    title: "Backend",
     icon: <Server className="w-4 h-4 text-emerald-400" />,
     skills: [
-      { name: "Node.js", level: 90, info: "Event loops, file streams, HTTP servers, Express" },
-      { name: "Python", level: 85, info: "Scraping, pandas, EPUB converters, scripts" },
-      { name: "Go (Golang)", level: 75, info: "REST APIs, structures, backend utilities" },
-      { name: "REST APIs", level: 90, info: "Integrations, middleware, auth configurations" },
+      { name: "Node.js", level: 90, info: "Core runtime, Express, microservices" },
+      { name: "Go", level: 85, info: "High performance APIs, concurrency" },
+      { name: "JavaScript", level: 95, info: "ES6+, async flows, backend logic" },
+      { name: "REST APIs", level: 90, info: "Architecture, integrations, scalability" },
     ],
   },
   {
-    title: "Bots & Automation",
+    title: "Database",
+    icon: <Layout className="w-4 h-4 text-sky-400" />,
+    skills: [
+      { name: "PostgreSQL", level: 90, info: "Relational data, complex queries, tuning" },
+      { name: "MongoDB", level: 85, info: "NoSQL, document stores, aggregation" },
+      { name: "MySQL", level: 85, info: "Relational, maintenance, indexing" },
+    ],
+  },
+  {
+    title: "Cloud & DevOps",
     icon: <Workflow className="w-4 h-4 text-purple-400" />,
     skills: [
-      { name: "Discord.js", level: 95, info: "Music playback embeds, queues, slash commands" },
-      { name: "Web Scraping", level: 90, info: "BeautifulSoup4, headers, proxy rotation, crawlers" },
-      { name: "Link Preview Engines", level: 90, info: "Metadata parsing, headers spoofing for embeds" },
-      { name: "Automation Scripts", level: 85, info: "Chron tasks, data formatters, system pipelines" },
+      { name: "AWS", level: 80, info: "EC2, RDS, S3, deployments" },
+      { name: "GCP", level: 80, info: "Compute Engine, Cloud Run, hosting" },
+      { name: "Deployment", level: 85, info: "CI/CD, Docker, production rollout" },
+      { name: "Server Maintenance", level: 90, info: "Linux, Nginx, troubleshooting, monitoring" },
     ],
   },
 ];
@@ -53,9 +51,15 @@ const SKILL_TREE: SkillCategory[] = [
 function SkillCategoryCard({ category, catIdx }: { category: SkillCategory; catIdx: number }) {
   const [selectedSkill, setSelectedSkill] = useState<SkillItem | null>(null);
 
+  const getLevelBadge = (level: number) => {
+    if (level >= 90) return { label: "Comfortable", color: "text-emerald-400 bg-emerald-500/10 border-emerald-500/20" };
+    if (level >= 80) return { label: "Familiar", color: "text-amber-400 bg-amber-500/10 border-amber-500/20" };
+    return { label: "Learning", color: "text-blue-400 bg-blue-500/10 border-blue-500/20" };
+  };
+
   return (
     <motion.div
-      initial={{ opacity: 0, y: 15 }}
+      initial={{ opacity: 1, y: 0 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ delay: catIdx * 0.1, duration: 0.35 }}
       viewport={{ once: true }}
@@ -71,34 +75,25 @@ function SkillCategoryCard({ category, catIdx }: { category: SkillCategory; catI
           </h4>
         </div>
 
-        <div className="space-y-4">
-          {category.skills.map((skill) => (
-            <div
-              key={skill.name}
-              onMouseEnter={() => setSelectedSkill(skill)}
-              onMouseLeave={() => setSelectedSkill(null)}
-              className="space-y-1.5 cursor-help group"
-            >
-              <div className="flex justify-between items-center text-xs font-mono">
-                <span className="text-slate-300 font-medium group-hover:text-emerald-400 transition-colors duration-200">
+        <div className="space-y-3">
+          {category.skills.map((skill) => {
+            const badge = getLevelBadge(skill.level);
+            return (
+              <div
+                key={skill.name}
+                onMouseEnter={() => setSelectedSkill(skill)}
+                onMouseLeave={() => setSelectedSkill(null)}
+                className="flex items-center justify-between p-2 rounded hover:bg-slate-800/50 cursor-help group transition-colors duration-200"
+              >
+                <span className="text-slate-300 text-sm font-medium group-hover:text-emerald-400 transition-colors duration-200">
                   {skill.name}
                 </span>
-                <span className="text-slate-500 font-semibold group-hover:text-emerald-400 transition-colors duration-200">
-                  {skill.level}%
+                <span className={`text-[10px] px-2 py-0.5 rounded font-mono border ${badge.color}`}>
+                  {badge.label}
                 </span>
               </div>
-              {/* Progress bar container */}
-              <div className="w-full h-1.5 bg-slate-950 rounded-full overflow-hidden border border-slate-900">
-                <motion.div
-                  initial={{ width: 0 }}
-                  whileInView={{ width: `${skill.level}%` }}
-                  transition={{ duration: 0.6, delay: 0.2 }}
-                  viewport={{ once: true }}
-                  className="h-full bg-emerald-500 rounded-full group-hover:bg-emerald-400 transition-colors duration-200"
-                />
-              </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
 
