@@ -47,7 +47,7 @@ export default function ActivityFeed({ events }: ActivityFeedProps) {
   };
 
   const getEventDetails = (event: GitEvent) => {
-    const repoName = event.repo.name.replace("bayue48/", "");
+    const repoName = event.repo.name.replace("mbayue/", "");
     const time = formatTimeAgo(event.created_at);
 
     switch (event.type) {
@@ -58,7 +58,7 @@ export default function ActivityFeed({ events }: ActivityFeedProps) {
           commitMsg = commitMsg.substring(0, 77) + "...";
         }
         return {
-          title: `bayue48/${repoName}`,
+          title: `mbayue/${repoName}`,
           subtitle: "Pushed to Repository",
           description: commitMsg,
           icon: <GitCommit className="w-4 h-4 text-emerald-400" />,
@@ -78,7 +78,7 @@ export default function ActivityFeed({ events }: ActivityFeedProps) {
         const refType = event.payload?.ref_type || "branch";
         const refName = event.payload?.ref || "main";
         return {
-          title: `bayue48/${repoName}`,
+          title: `mbayue/${repoName}`,
           subtitle: `Created ${refType} (${refName})`,
           description: `Initialized new development ${refType}`,
           icon: <Code className="w-4 h-4 text-blue-400" />,
@@ -202,7 +202,7 @@ export default function ActivityFeed({ events }: ActivityFeedProps) {
       {filteredEvents.length > 5 && (
         <div className="pt-2 text-center">
           <a
-            href="https://github.com/bayue48"
+            href="https://github.com/mbayue"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-block px-4 py-2 border border-slate-800 hover:border-emerald-500/50 bg-slate-900/30 hover:bg-slate-900 text-slate-400 hover:text-emerald-400 text-xs font-mono rounded-lg transition-all duration-200 cursor-pointer"

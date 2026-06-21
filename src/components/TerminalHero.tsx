@@ -175,7 +175,7 @@ export default function TerminalHero() {
         </div>
         <div className="flex items-center gap-1.5 text-xs text-slate-400 font-mono">
           <Terminal className="w-3.5 h-3.5 text-emerald-500" />
-          <span>bayue48@shell:~</span>
+          <span>mbayue@shell:~</span>
         </div>
         <div className="w-12"></div> {/* Spacing spacer */}
       </div>
@@ -191,7 +191,7 @@ export default function TerminalHero() {
             <div key={idx} className="space-y-2">
               {item.command !== "system_init" && (
                 <div className="flex items-center gap-2 text-emerald-400 font-semibold">
-                  <span className="text-slate-500">visitor@bayue48:~$</span>
+                  <span className="text-slate-500">visitor@mbayue:~$</span>
                   <span>{item.command}</span>
                 </div>
               )}
@@ -213,7 +213,7 @@ export default function TerminalHero() {
         onClick={focusInput}
         className="flex items-center gap-2 px-4 py-3 bg-slate-950/95 border-t border-slate-900 font-mono text-sm md:text-base text-emerald-400 cursor-text"
       >
-        <span className="text-slate-500 font-bold shrink-0 select-none">visitor@bayue48:~$</span>
+        <span className="text-slate-500 font-bold shrink-0 select-none">visitor@mbayue:~$</span>
         <input
           ref={inputRef}
           type="text"

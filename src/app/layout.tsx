@@ -22,8 +22,8 @@ export const metadata: Metadata = {
     shortcut: "/favicon.svg",
     apple: "/favicon.svg",
   },
-  keywords: ["Bayu Erich", "bayue48", "portfolio", "nextjs", "typescript", "backend engineer", "go", "nodejs", "databases"],
-  authors: [{ name: "Bayu Erich", url: "https://github.com/bayue48" }],
+  keywords: ["Bayu Erich", "mbayue", "portfolio", "nextjs", "typescript", "backend engineer", "go", "nodejs", "databases"],
+  authors: [{ name: "Bayu Erich", url: "https://github.com/mbayue" }],
   openGraph: {
     title: "Bayu Erich — Backend Engineer",
     description: "Portfolio and CV of Bayu Erich, Backend Engineer focused on APIs, databases, cloud deployment, and automation.",

@@ -29,12 +29,12 @@ export default function ContactConsole() {
     const mailtoUrl = `mailto:${recipient}?subject=${subject}&body=${body}`;
 
     const initialLogs = [
-            `$ ping -c 3 dev.bayue48.site`,
-      `PING dev.bayue48.site (172.67.142.155) 56(84) bytes of data.`,
+      `$ ping -c 3 me.gsdm.site`,
+      `PING me.gsdm.site (172.67.142.155) 56(84) bytes of data.`,
       `64 bytes from 172.67.142.155: icmp_seq=1 ttl=57 time=21.4 ms`,
       `64 bytes from 172.67.142.155: icmp_seq=2 ttl=57 time=19.8 ms`,
       `64 bytes from 172.67.142.155: icmp_seq=3 ttl=57 time=20.2 ms`,
-      `--- dev.bayue48.site ping statistics ---`,
+      `--- me.gsdm.site ping statistics ---`,
       `3 packets transmitted, 3 received, 0% packet loss, time 2003ms`,
       `$ ssh-send --sender="${email}" --payload="..."`,
       `Establishing SSL handshake with mail-broker...`,
@@ -59,7 +59,7 @@ export default function ContactConsole() {
       <div className="flex items-center justify-between px-4 py-2.5 bg-slate-900 border-b border-slate-850">
         <div className="flex items-center gap-1.5 text-xs text-slate-400 font-mono">
           <Terminal className="w-4 h-4 text-emerald-500" />
-          <span>secure-transmission-agent@bayue48</span>
+          <span>secure-transmission-agent@mbayue</span>
         </div>
         <div className="flex gap-1.5">
           <span className="w-2.5 h-2.5 rounded-full bg-slate-800" />

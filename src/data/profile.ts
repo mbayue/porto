@@ -5,7 +5,7 @@ export const profile = {
   location: "Tuban, East Java / Indonesia",
   email: "bayu.erich@gmail.com",
   linkedin: "https://www.linkedin.com/in/bayuerich/",
-  github: "bayue48",
+  github: "mbayue",
   tagline: "Backend engineer who works mostly on APIs, databases, bug fixing, server maintenance, and practical software tools.",
   summary: "I’m a backend engineer from Indonesia with experience maintaining production systems, reviewing backend code, deploying servers, and improving web applications. Most of my work has been around backend services, databases, bug fixing, and system reliability. Lately, I’ve also been exploring AI-assisted development and codebase visualization.",
   skills: {

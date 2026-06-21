@@ -85,16 +85,16 @@ async function getCommitMessage(repoName: string, sha: string, headers: Record<s
 async function getGithubData() {
   const headers: Record<string, string> = {
     Accept: "application/vnd.github+json",
-    "User-Agent": "bayue48-portfolio",
+    "User-Agent": "mbayue-portfolio",
   };
   if (process.env.GITHUB_TOKEN) {
     headers.Authorization = `token ${process.env.GITHUB_TOKEN}`;
   }
 
   const [userRes, reposRes, eventsRes] = await Promise.all([
-    fetch("https://api.github.com/users/bayue48", { headers, next: { revalidate: 3600 } }),
-    fetch("https://api.github.com/users/bayue48/repos?per_page=100&sort=updated", { headers, next: { revalidate: 3600 } }),
-    fetch("https://api.github.com/users/bayue48/events/public?per_page=30", { headers, next: { revalidate: 3600 } }),
+    fetch("https://api.github.com/users/mbayue", { headers, next: { revalidate: 3600 } }),
+    fetch("https://api.github.com/users/mbayue/repos?per_page=100&sort=updated", { headers, next: { revalidate: 3600 } }),
+    fetch("https://api.github.com/users/mbayue/events/public?per_page=30", { headers, next: { revalidate: 3600 } }),
   ]);
 
   if (!userRes.ok || !reposRes.ok || !eventsRes.ok) {
@@ -121,7 +121,7 @@ async function getGithubData() {
 
   const graphqlQuery = `
     query {
-      user(login: "bayue48") {
+      user(login: "mbayue") {
         contributionsCollection {
           contributionCalendar {
             totalContributions
@@ -263,7 +263,7 @@ export default async function Page() {
               <TerminalIcon className="w-4.5 h-4.5 text-emerald-500" />
             </div>
             <span className="font-heading font-bold text-sm tracking-wider uppercase font-mono group-hover:text-emerald-400 transition-colors duration-200">
-              bayue48.sh
+              mbayue.sh
             </span>
           </a>
 
