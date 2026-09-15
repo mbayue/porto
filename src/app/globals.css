@@ -336,6 +336,7 @@ svg { flex-shrink: 0; }
 .hero-metrics > div { display: flex; flex-direction: column; }
 .hero-metrics > div > strong { font: 600 22px var(--font-archivo), sans-serif; letter-spacing: -0.5px; }
 .hero-metrics > div > span { font-size: 12px; color: var(--muted); }
+.skills-grid > .skill-card:last-child { grid-column: span 2; }
 .impact-line { display: block; font-size: 13px; color: var(--accent); margin-top: 10px; }
 @media (max-width: 600px) { .hero-metrics { gap: 18px; } }
 @media (max-width: 800px) { .header-inner { gap: 12px; } .desktop-nav { gap: 16px; margin-right: 0; } }
@@ -352,5 +353,5 @@ svg { flex-shrink: 0; }
   .header-cv { padding: 8px; }
   .header-cv svg { display: none; }
 }
-@media (max-width: 600px) { .section { padding: 72px 0; } }
+@media (max-width: 600px) { .section { padding: 72px 0; } .skills-grid > .skill-card:last-child { grid-column: auto; } }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { animation: none !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; } }
