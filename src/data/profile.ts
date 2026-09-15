@@ -72,5 +72,19 @@ export const profile = {
     "sketchbook_",
     "pixeldrain-bypasser",
     "porto",
-  ]
+  ],
+  metrics: [
+    { value: "3+ yrs", label: "production backend" },
+    { value: "20+ repos", label: "shipped and maintained" },
+    { value: "Postgres and Go", label: "daily drivers" },
+  ],
+  impacts: {
+    gitSdm: "Map any repo structure in seconds instead of folder-hunting.",
+    "pia-scrap": "Web content to clean EPUB reading list in one command.",
+    keking: "Discord music plus community utilities with zero restarts.",
+    "novelpia-reader": "Offline Novelpia library with background downloads.",
+    "sketchbook_": "One-page art timelapse gallery, live in production.",
+    "pixeldrain-bypasser": "Resumable batch downloads with skip-if-done.",
+    porto: "This site: terminal, filters, GitHub proof, light and dark.",
+  },
 };
