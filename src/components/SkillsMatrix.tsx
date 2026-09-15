@@ -8,5 +8,5 @@ const categories = [
 ];
 
 export default function SkillsMatrix() {
-  return <div className="skills-grid">{categories.map(({ title, icon: Icon, description, skills }, index) => <article className="skill-card" key={title}><div className="skill-top"><Icon size={25} strokeWidth={1.5} /><span className="mono">0{index + 1}</span></div><h3>{title}</h3><p>{description}</p><div className="skill-tags"><span className="tag tag-accent">Used in prod</span>{skills.map(skill => <span className="tag" key={skill}>{skill.replace("Amazon Web Service (AWS)", "AWS").replace("Google Cloud Platform (GCP)", "GCP")}</span>)}</div></article>)}</div>;
+  return <div className="skills-grid">{categories.map(({ title, icon: Icon, description, skills }, index) => <article className="skill-card" key={title}><div className="skill-top"><Icon size={25} strokeWidth={1.5} /><span className="mono">0{index + 1}</span></div><h3>{title}</h3><p>{description}</p><div className="skill-tags">{skills.map(skill => <span className="tag" key={skill}>{skill.replace("Amazon Web Service (AWS)", "AWS").replace("Google Cloud Platform (GCP)", "GCP")}</span>)}</div></article>)}</div>;
 }
