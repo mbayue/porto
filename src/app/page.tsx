@@ -8,7 +8,6 @@ import AboutSection from "@/components/AboutSection";
 import ExperienceSection from "@/components/ExperienceSection";
 import SkillsMatrix from "@/components/SkillsMatrix";
 import FeaturedProjects from "@/components/FeaturedProjects";
-import EducationSection from "@/components/EducationSection";
 import GithubDashboard from "@/components/GithubDashboard";
 import ActivityFeed from "@/components/ActivityFeed";
 import ContactSection from "@/components/ContactSection";
@@ -276,18 +275,17 @@ export default async function Page() {
           <FeaturedProjects repositories={featuredRepos} />
           {!githubData && <p className="project-unavailable">Showing selected projects. Live GitHub stats are temporarily unavailable.</p>}
         </section>
-        <AboutSection />
         <ExperienceSection />
         <section id="skills" className="section">
-          <div className="section-heading"><div><p className="eyebrow">04 / THE TOOLKIT</p><h2>The right tool for the job.</h2></div><p className="section-note">Technologies I’ve worked with<br />across projects and production.</p></div>
+          <div className="section-heading"><div><p className="eyebrow">03 / THE TOOLKIT</p><h2>The right tool for the job.</h2></div><p className="section-note">Technologies I have worked with<br />across projects and production.</p></div>
           <SkillsMatrix />
-          <EducationSection />
         </section>
         {githubData && <section id="activity" className="section">
-          <div className="section-heading"><div><p className="eyebrow">05 / IN THE OPEN</p><h2>Still building. Still exploring.</h2></div><span className="section-note">From my public GitHub activity</span></div>
+          <div className="section-heading"><div><p className="eyebrow">04 / IN THE OPEN</p><h2>Still building. Still exploring.</h2></div><span className="section-note">From my public GitHub activity</span></div>
           <GithubDashboard user={userDetails} stats={processedStats} contributionCells={githubData.contributionCells} />
           <ActivityFeed events={githubData.events} />
         </section>}
+        <AboutSection />
         <ContactSection />
         <footer className="site-footer"><span>© {new Date().getFullYear()} {profile.shortName}</span><span>Thoughtfully built in Indonesia.</span><a href="#hero">Back to top <ArrowUp size={14} /></a></footer>
       </main>
