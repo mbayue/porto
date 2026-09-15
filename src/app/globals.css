@@ -173,7 +173,7 @@ svg { flex-shrink: 0; }
 .experience-main li { position: relative; padding-left: 16px; margin-top: 7px; }
 .experience-main li::before { content: "·"; position: absolute; left: 0; color: var(--accent); }
 .experience-number { color: #949d90; font: 13px monospace; padding-top: 9px; text-align: right; }
-.skills-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+.skills-grid { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 18px; }
 .skill-card { background: var(--surface); border: 1px solid var(--line); border-radius: 7px; padding: 25px; }
 .skill-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; color: var(--accent); }
 .skill-top span { color: var(--muted); font-size: 11px; }
@@ -336,7 +336,9 @@ svg { flex-shrink: 0; }
 .hero-metrics > div { display: flex; flex-direction: column; }
 .hero-metrics > div > strong { font: 600 22px var(--font-archivo), sans-serif; letter-spacing: -0.5px; }
 .hero-metrics > div > span { font-size: 12px; color: var(--muted); }
-.skills-grid > .skill-card:last-child { grid-column: span 2; }
+.skills-grid > .skill-card { grid-column: span 2; }
+.skills-grid > .skill-card:nth-child(4),
+.skills-grid > .skill-card:nth-child(5) { grid-column: span 3; }
 .impact-line { display: block; font-size: 13px; color: var(--accent); margin-top: 10px; }
 @media (max-width: 600px) { .hero-metrics { gap: 18px; } }
 @media (max-width: 800px) { .header-inner { gap: 12px; } .desktop-nav { gap: 16px; margin-right: 0; } }
@@ -353,5 +355,5 @@ svg { flex-shrink: 0; }
   .header-cv { padding: 8px; }
   .header-cv svg { display: none; }
 }
-@media (max-width: 600px) { .section { padding: 72px 0; } .skills-grid > .skill-card:last-child { grid-column: auto; } }
+@media (max-width: 600px) { .section { padding: 72px 0; } .skills-grid > .skill-card { grid-column: auto; } }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { animation: none !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; } }
