@@ -98,15 +98,26 @@ export default function TerminalHero() {
         break;
 
       case "stack":
-      case "skills":
+      case "skills": {
+        const groups: [string, string[]][] = [
+          ["Languages", profile.skills.languages],
+          ["Backend", profile.skills.backend],
+          ["Databases", profile.skills.database],
+          ["Cloud", profile.skills.cloud],
+          ["DevOps", profile.skills.devops],
+        ];
         output = (
           <div className="space-y-1 text-slate-200 text-sm leading-relaxed">
-            <p>
-              Go, JavaScript, PostgreSQL, MongoDB, MySQL, AWS, and GCP.
-            </p>
+            {groups.map(([label, items]) => (
+              <p key={label}>
+                <span className="text-emerald-400 font-mono">{label}: </span>
+                {items.join(", ")}.
+              </p>
+            ))}
           </div>
         );
         break;
+      }
 
       case "projects":
         output = (
