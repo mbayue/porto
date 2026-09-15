@@ -288,7 +288,7 @@ export default async function Page() {
           <SkillsMatrix />
         </section>
         {githubData && <section id="activity" className="section">
-          <div className="section-heading"><div><p className="eyebrow">04 / IN THE OPEN</p><h2>Still building. Still exploring.</h2></div><span className="section-note">From my public GitHub activity</span></div>
+          <div className="section-heading"><div><p className="eyebrow">04 / ACTIVITY</p><h2>Still building. Still exploring.</h2></div><span className="section-note">From my public GitHub activity</span></div>
           <GithubDashboard user={userDetails} stats={processedStats} contributionCells={githubData.contributionCells} />
           <ActivityFeed events={githubData.events} />
         </section>}

@@ -8,7 +8,7 @@ const links = [
   ["Work", "projects"],
   ["Experience", "experience"],
   ["Toolkit", "skills"],
-  ["GitHub", "activity"],
+  ["Activity", "activity"],
   ["About", "about"],
   ["Contact", "contact"],
 ];
