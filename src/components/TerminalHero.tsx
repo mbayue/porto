@@ -158,11 +158,7 @@ export default function TerminalHero() {
       case "secret":
         output = (
           <div className="p-3 bg-emerald-950/30 border border-emerald-500/30 rounded text-emerald-400 font-mono text-xs md:text-sm">
-            <p className="font-bold mb-1">🎉 SUCCESS: Easter Egg Unlocked!</p>
-            <p className="text-slate-200 italic mb-2">{'"pull stuck, copy-pasta overflow dev"'}</p>
-            <p className="text-slate-400 text-xs">
-              Meaning: Even when git pulls get stuck, Stack Overflow tabs pile up, and copy-paste almost works, a developer keeps coding, debugging, adapting and resolving issues with persistence.
-            </p>
+            <p className="font-bold">secret unlocked: commit, push, touch grass.</p>
           </div>
         );
         break;
