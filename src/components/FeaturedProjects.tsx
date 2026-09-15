@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { ArrowRight, ArrowUpRight, BookOpen, Braces, Download, FileCode2, GitBranch, Monitor, Music2, Star, Workflow } from "lucide-react";
+import { ArrowRight, ArrowUpRight, BookMarked, BookOpen, Braces, Download, FileCode2, Film, GitBranch, Images, Music2, Pencil, Star, Workflow } from "lucide-react";
 import ProjectDialog from "./ProjectDialog";
 import { getProjectCategory, projectDetails, type Project } from "@/data/projects";
 import { profile } from "@/data/profile";
@@ -10,7 +10,12 @@ function ProjectVisual({ name, index }: { name: string; index: number }) {
   return <div className="project-visual" aria-hidden="true"><span className="project-index">PROJECT / {String(index + 1).padStart(2, "0")}</span>
     {name === "gitSdm" ? <div className="repo-graph"><span><GitBranch size={20} /></span><span>repository</span><div><span>src/</span><span>components/</span><span>data/</span></div></div>
       : name === "pia-scrap" ? <div className="scrape-flow"><span><FileCode2 size={27} />HTML</span><ArrowRight size={24} /><span><Braces size={27} />PARSE</span><ArrowRight size={24} /><span><BookOpen size={27} />EPUB</span></div>
-      : name === "keking" ? <Music2 /> : name === "novelpia-reader" ? <BookOpen /> : name === "pixeldrain-bypasser" ? <Download /> : name === "porto" ? <Monitor /> : <Workflow />}
+      : name === "sketchbook_" ? <div className="scrape-flow"><span><Pencil size={27} />SKETCH</span><ArrowRight size={24} /><span><Film size={27} />TIMELAPSE</span><ArrowRight size={24} /><span><Images size={27} />GALLERY</span></div>
+      : name === "novelpia-reader" ? <div className="scrape-flow"><span><Download size={27} />FETCH</span><ArrowRight size={24} /><span><BookOpen size={27} />READ</span><ArrowRight size={24} /><span><BookMarked size={27} />EPUB</span></div>
+      : name === "keking" ? <div className="bot-flow"><span>!play</span><Music2 size={26} /><span className="eq" aria-hidden="true"><i /><i /><i /><i /><i /></span></div>
+      : name === "pixeldrain-bypasser" ? <div className="batch-flow"><span><i style={{ width: "100%" }} /><b>album.zip · done</b></span><span><i style={{ width: "100%" }} /><b>part-02 · done</b></span><span><i style={{ width: "45%" }} /><b>part-03 · 45%</b></span></div>
+      : name === "porto" ? <div className="site-frame"><div className="site-bar"><i /><i /><i /><span>bayue · portfolio</span></div><div className="site-body"><i /><i /><b /></div></div>
+      : <Workflow />}
     <span className="project-visual-label">{name === "gitSdm" ? "MAKE THE CONNECTIONS VISIBLE" : name === "pia-scrap" ? "COLLECT. CONVERT. READ." : name === "novelpia-reader" ? "YOUR LIBRARY. AVAILABLE OFFLINE." : name === "sketchbook_" ? "ART. ONE PAGE." : name === "pixeldrain-bypasser" ? "BATCH DOWNLOADS. READY TO RESUME." : name === "porto" ? "YOU’RE LOOKING AT IT." : "SMALL TOOLS. USEFUL POSSIBILITIES."}</span>
   </div>;
 }
