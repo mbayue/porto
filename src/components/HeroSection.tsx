@@ -1,5 +1,6 @@
-import { ArrowDown, ArrowUpRight, Braces, Database, Globe2, Server } from "lucide-react";
+import { ArrowDown, ArrowUpRight } from "lucide-react";
 import { profile } from "@/data/profile";
+import SystemDiagram from "./SystemDiagram";
 
 export default function HeroSection() {
   return (
@@ -17,16 +18,7 @@ export default function HeroSection() {
         </div>
         <div className="hero-footnote"><span>BASED IN TUBAN, ID</span><span>BUILDING FOR THE WEB</span></div>
       </div>
-      <div className="architecture" role="img" aria-label="Backend architecture illustration: a client connects to an API service, which connects to a database and a background worker.">
-        <div className="architecture-caption"><span><span className="status-dot" /> SYSTEMS OPERATIONAL</span><Braces size={17} /></div>
-        <div className="system-node client-node"><Globe2 size={19} /><span>Client request</span><span className="node-code">HTTPS</span></div>
-        <div className="connector connector-top"><span>GET /something-good</span></div>
-        <div className="system-node api-node"><div className="api-icon"><Server size={28} /></div><div><span className="node-kicker">THE BACKEND</span><strong>Built to do the work.</strong><small>Logic. Integrations. Reliability.</small></div><span className="node-indicator" /></div>
-        <div className="connector-branch"><i /><i /></div>
-        <div className="system-bottom"><div className="system-node"><Database size={21} /><span>Database<small>Store what matters</small></span></div><div className="system-node"><Braces size={21} /><span>Worker<small>Handle the details</small></span></div></div>
-        <div className="architecture-footer"><span><i /> Request → response</span><span>One thoughtful layer at a time.</span></div>
-        <span className="diagram-index">FIG. 01 / BEHIND THE INTERFACE</span>
-      </div>
+      <SystemDiagram />
     </section>
   );
 }

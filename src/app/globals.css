@@ -333,9 +333,9 @@ svg { flex-shrink: 0; }
 :root[data-theme="light"] .diagram-index { color: #596b4d; }
 :root[data-theme="light"] .terminal-disclosure .text-red-400 { color: #b42318; }
 .hero-metrics { display: flex; gap: 28px; margin-top: 28px; }
-.hero-metrics div { display: flex; flex-direction: column; }
-.hero-metrics strong { font: 600 22px var(--font-archivo), sans-serif; letter-spacing: -0.5px; }
-.hero-metrics span { font-size: 12px; color: var(--muted); }
+.hero-metrics > div { display: flex; flex-direction: column; }
+.hero-metrics > div > strong { font: 600 22px var(--font-archivo), sans-serif; letter-spacing: -0.5px; }
+.hero-metrics > div > span { font-size: 12px; color: var(--muted); }
 .impact-line { display: block; font-size: 13px; color: var(--accent); margin-top: 10px; }
 @media (max-width: 600px) { .hero-metrics { gap: 18px; } }
 @media (max-width: 800px) { .header-inner { gap: 12px; } .desktop-nav { gap: 16px; margin-right: 0; } }
