@@ -60,3 +60,5 @@ desktop.ini
 design-system
 .omo
 graphify-out
+.worktrees/
+.superpowers/
