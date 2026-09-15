@@ -184,7 +184,26 @@ async function getGithubData() {
     contributionCells = Array(315).fill({ level: 0, count: 0, date: "" });
   }
 
-  return { user, repos, events: enrichedEvents, contributionCells };
+  const contributionsLive = contributionCells.some((cell) => cell.date);
+  if (!contributionsLive && Array.isArray(repos) && repos.length > 0) {
+    const pushCounts: Record<string, number> = {};
+    (repos as { pushed_at?: string }[]).forEach((repo) => {
+      const day = repo.pushed_at?.slice(0, 10);
+      if (day) pushCounts[day] = (pushCounts[day] || 0) + 1;
+    });
+    const today = new Date();
+    const fallback: { level: number; count: number; date: string }[] = [];
+    for (let i = 314; i >= 0; i--) {
+      const d = new Date(Date.UTC(today.getUTCFullYear(), today.getUTCMonth(), today.getUTCDate()));
+      d.setUTCDate(d.getUTCDate() - i);
+      const key = d.toISOString().slice(0, 10);
+      const count = pushCounts[key] || 0;
+      fallback.push({ level: Math.min(4, count), count, date: key });
+    }
+    contributionCells = fallback;
+  }
+
+  return { user, repos, events: enrichedEvents, contributionCells, contributionsLive };
 }
 
 export default async function Page() {
@@ -289,7 +308,7 @@ export default async function Page() {
         </section>
         {githubData && <section id="activity" className="section">
           <div className="section-heading"><div><p className="eyebrow">04 / IN THE OPEN</p><h2>Still building. Still exploring.</h2></div><span className="section-note">From my public GitHub activity</span></div>
-          <GithubDashboard user={userDetails} stats={processedStats} contributionCells={githubData.contributionCells} />
+          <GithubDashboard user={userDetails} stats={processedStats} contributionCells={githubData.contributionCells} contributionCaption={githubData.contributionsLive ? "Recent contribution history" : "Recent pushes across public repositories"} />
           <ActivityFeed events={githubData.events} />
         </section>}
         <AboutSection />
