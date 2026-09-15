@@ -6,8 +6,10 @@ import ThemeToggle from "./ThemeToggle";
 
 const links = [
   ["Work", "projects"],
-  ["About", "about"],
   ["Experience", "experience"],
+  ["Toolkit", "skills"],
+  ["Open", "activity"],
+  ["About", "about"],
   ["Contact", "contact"],
 ];
 
