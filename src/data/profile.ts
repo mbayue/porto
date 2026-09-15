@@ -9,9 +9,11 @@ export const profile = {
   tagline: "Backend engineer who works mostly on APIs, databases, bug fixing, server maintenance, and practical software tools.",
   summary: "I’m a backend engineer from Indonesia with experience maintaining production systems, reviewing backend code, deploying servers, and improving web applications. Most of my work has been around backend services, databases, bug fixing, and system reliability. Lately, I’ve also been exploring AI-assisted development and codebase visualization.",
   skills: {
-    backend: ["Node.js", "Go", "JavaScript", "REST APIs"],
-    database: ["PostgreSQL", "MongoDB", "MySQL"],
-    cloud: ["Amazon Web Service (AWS)", "Google Cloud Platform (GCP)", "Deployment", "Server Maintenance"],
+    languages: ["JavaScript", "TypeScript", "Go", "Python"],
+    backend: ["Node.js", "NestJS", "REST APIs"],
+    database: ["PostgreSQL", "MongoDB", "MySQL", "Redis"],
+    cloud: ["AWS", "GCP"],
+    devops: ["Docker", "CI/CD", "Server Maintenance"],
   },
   languages: [
     { name: "Bahasa Indonesia", level: "Native" },
@@ -67,24 +69,25 @@ export const profile = {
   featuredProjects: [
     "gitSdm",
     "pia-scrap",
+    "sketchbook_",
     "keking",
     "novelpia-reader",
-    "sketchbook_",
     "pixeldrain-bypasser",
     "porto",
   ],
   metrics: [
     { value: "3+ yrs", label: "production backend" },
     { value: "20+ repos", label: "shipped and maintained" },
-    { value: "Postgres and Go", label: "daily drivers" },
+    { value: "TypeScript", label: "daily drivers" },
   ],
   impacts: {
     gitSdm: "Map any repo structure in seconds instead of folder-hunting.",
     "pia-scrap": "Web content to clean EPUB reading list in one command.",
+    "sketchbook_": "One-page art timelapse gallery, live in production.",
     keking: "Discord music plus community utilities with zero restarts.",
     "novelpia-reader": "Offline Novelpia library with background downloads.",
-    "sketchbook_": "One-page art timelapse gallery, live in production.",
     "pixeldrain-bypasser": "Resumable batch downloads with skip-if-done.",
     porto: "This site: terminal, filters, GitHub proof, light and dark.",
   },
+  stackStrip: ["Node.js", "Go", "PostgreSQL", "MongoDB", "AWS", "Google Cloud"],
 };
