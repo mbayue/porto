@@ -128,7 +128,7 @@ export default function TerminalHero() {
             <p>
               Featured: {profile.featuredProjects.join(", ")}.
             </p>
-            <p className="text-slate-400 text-xs mt-2 italic">Scroll down to see the visual card grids for more details.</p>
+            <p className="text-slate-400 text-xs mt-2 italic">Scroll up to the <a href="#projects" className="text-emerald-400 not-italic underline">visual card grids</a> for more details.</p>
           </div>
         );
         break;
