@@ -20,9 +20,9 @@
   --color-emerald-600: #82aa55;
 }
 :root {
-  --background: #101211;
-  --surface: #171a18;
-  --surface-raised: #1d221e;
+  --background: #0C0F0D;
+  --surface: #141816;
+  --surface-raised: #1B211C;
   --foreground: #f1f3eb;
   --muted: #a2aba2;
   --accent: #b8e881;
@@ -106,7 +106,7 @@ svg { flex-shrink: 0; }
 .stack-strip .stack-items { display: flex; flex-wrap: wrap; gap: 34px; color: #c4ccc5; align-items: center; }
 .stack-items span { font-size: 17px; font-weight: 500; letter-spacing: -.4px; }
 .stack-items span:nth-child(2) { font-style: italic; font-weight: 700; }
-.section { padding: 88px 0; border-bottom: 1px solid var(--line); }
+.section { padding: 110px 0; border-bottom: 1px solid var(--line); }
 .section-heading { display: flex; justify-content: space-between; align-items: flex-end; gap: 30px; margin-bottom: 35px; }
 .section-heading h2 { font-size: clamp(30px, 3.4vw, 43px); font-weight: 500; letter-spacing: -1.6px; line-height: 1.18; margin-top: 14px; }
 .section-note { color: var(--muted); font-size: 14px; line-height: 1.7; }
@@ -332,6 +332,12 @@ svg { flex-shrink: 0; }
 :root[data-theme="light"] .experience-number,
 :root[data-theme="light"] .diagram-index { color: #596b4d; }
 :root[data-theme="light"] .terminal-disclosure .text-red-400 { color: #b42318; }
+.hero-metrics { display: flex; gap: 28px; margin-top: 28px; }
+.hero-metrics div { display: flex; flex-direction: column; }
+.hero-metrics strong { font: 600 22px var(--font-archivo), sans-serif; letter-spacing: -0.5px; }
+.hero-metrics span { font-size: 12px; color: var(--muted); }
+.impact-line { display: block; font-size: 13px; color: var(--accent); margin-top: 10px; }
+@media (max-width: 600px) { .hero-metrics { gap: 18px; } .section { padding: 72px 0; } }
 @media (max-width: 800px) { .header-inner { gap: 12px; } .desktop-nav { gap: 16px; margin-right: 0; } }
 @media (max-width: 700px) { .desktop-nav { display: none; } .header-actions { margin-left: auto; } .menu-button { display: flex; margin-right: -10px; } }
 @media (max-width: 600px) { .header-actions { margin-left: auto; gap: 8px; } .header-actions .header-cv { margin-left: 0; } .theme-toggle { width: 38px; height: 38px; } }
