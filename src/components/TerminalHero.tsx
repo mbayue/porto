@@ -80,8 +80,9 @@ export default function TerminalHero() {
         output = (
           <div className="space-y-2 text-slate-200 text-sm leading-relaxed">
             <p>
-              Backend engineer from Indonesia. I work mostly on APIs, databases, server maintenance, and practical tools.
+              {profile.name} — {profile.role}, {profile.location}.
             </p>
+            <p>{profile.tagline}</p>
           </div>
         );
         break;
@@ -90,9 +91,11 @@ export default function TerminalHero() {
       case "experience":
         output = (
           <div className="space-y-1 text-slate-200 text-sm leading-relaxed">
-            <p>
-              Previously worked on Orderfaz, Apikurir, SINSW, PJKEK, and SINAS NK.
-            </p>
+            {profile.experience.map((job) => (
+              <p key={job.company}>
+                {job.role} at {job.company} <span className="text-slate-400">({job.period})</span>
+              </p>
+            ))}
           </div>
         );
         break;
@@ -123,7 +126,7 @@ export default function TerminalHero() {
         output = (
           <div className="space-y-1 text-slate-200 text-sm leading-relaxed">
             <p>
-              I like building tools around automation, repository visualization, scraping, and Discord bots.
+              Featured: {profile.featuredProjects.join(", ")}.
             </p>
             <p className="text-slate-400 text-xs mt-2 italic">Scroll down to see the visual card grids for more details.</p>
           </div>
@@ -133,9 +136,15 @@ export default function TerminalHero() {
       case "contact":
         output = (
           <div className="space-y-1 text-slate-200 text-sm leading-relaxed">
+            <p>Available for backend engineering opportunities and collaboration.</p>
             <p>
-              Available for backend engineering opportunities and collaboration. 
-              Email me at: <span className="text-emerald-400">{profile.email}</span>
+              Email: <span className="text-emerald-400">{profile.email}</span>
+            </p>
+            <p>
+              GitHub: <span className="text-emerald-400">github.com/{profile.github}</span>
+            </p>
+            <p>
+              LinkedIn: <span className="text-emerald-400">{profile.linkedin}</span>
             </p>
           </div>
         );
@@ -187,7 +196,7 @@ export default function TerminalHero() {
         </div>
         <div className="flex items-center gap-1.5 text-xs text-slate-400 font-mono">
           <Terminal className="w-3.5 h-3.5 text-emerald-500" />
-          <span>mbayue@shell:~</span>
+          <span>{profile.github}@shell:~</span>
         </div>
         <div className="w-12"></div> {/* Spacing spacer */}
       </div>
@@ -203,7 +212,7 @@ export default function TerminalHero() {
             <div key={idx} className="space-y-2">
               {item.command !== "system_init" && (
                 <div className="flex items-center gap-2 text-emerald-400 font-semibold">
-                  <span className="text-slate-500">visitor@mbayue:~$</span>
+                  <span className="text-slate-500">visitor@{profile.github}:~$</span>
                   <span>{item.command}</span>
                 </div>
               )}
@@ -227,7 +236,7 @@ export default function TerminalHero() {
         onClick={focusInput}
         className="flex items-center gap-2 px-4 py-3 bg-slate-950/95 border-t border-slate-900 font-mono text-sm md:text-base text-emerald-400 cursor-text"
       >
-        <span className="text-slate-500 font-bold shrink-0 select-none">visitor@mbayue:~$</span>
+        <span className="text-slate-500 font-bold shrink-0 select-none">visitor@{profile.github}:~$</span>
         <input
           ref={inputRef}
           type="text"
