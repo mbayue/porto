@@ -1,7 +1,7 @@
 "use client";
 
 import { Braces, Database, Globe2, Server } from "lucide-react";
-import { motion, useReducedMotion, type Variants } from "framer-motion";
+import { motion, MotionConfig, type Variants } from "framer-motion";
 
 const list: Variants = {
   show: { transition: { staggerChildren: 0.09, delayChildren: 0.1 } },
@@ -13,10 +13,10 @@ const item: Variants = {
 };
 
 export default function SystemDiagram() {
-  const reducedMotion = useReducedMotion();
   return (
+    <MotionConfig reducedMotion="user">
     <div className="architecture" role="img" aria-label="Backend architecture illustration: a client connects to an API service, which connects to a database and a background worker.">
-      <motion.div initial={reducedMotion ? false : "hidden"} animate="show" variants={list}>
+      <motion.div initial="hidden" animate="show" variants={list}>
         <motion.div variants={item} className="architecture-caption"><span><span className="status-dot" /> SYSTEMS OPERATIONAL</span><Braces size={17} /></motion.div>
         <motion.div variants={item} className="system-node client-node"><Globe2 size={19} /><span>Client request</span><span className="node-code">HTTPS</span></motion.div>
         <motion.div variants={item} className="connector connector-top"><span>GET /something-good</span></motion.div>
@@ -27,5 +27,6 @@ export default function SystemDiagram() {
       </motion.div>
       <span className="diagram-index">FIG. 01 / BEHIND THE INTERFACE</span>
     </div>
+    </MotionConfig>
   );
 }
