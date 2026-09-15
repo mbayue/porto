@@ -89,5 +89,4 @@ export const profile = {
     "pixeldrain-bypasser": "Resumable batch downloads with skip-if-done.",
     porto: "This site: terminal, filters, GitHub proof, light and dark.",
   },
-  stackStrip: ["Node.js", "Go", "PostgreSQL", "MongoDB", "AWS", "Google Cloud"],
 };

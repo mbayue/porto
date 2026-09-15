@@ -13,6 +13,12 @@ import ActivityFeed from "@/components/ActivityFeed";
 import ContactSection from "@/components/ContactSection";
 import { profile } from "@/data/profile";
 
+const stripTools = [
+  ...profile.skills.backend.slice(0, 2),
+  ...profile.skills.database.slice(0, 2),
+  ...profile.skills.cloud.slice(0, 2),
+];
+
 // Type definitions
 interface Repository {
   id: number;
@@ -269,7 +275,7 @@ export default async function Page() {
       <SiteHeader />
       <main id="main" className="site-shell">
         <HeroSection />
-        <div className="stack-strip"><span>THE TOOLS<br />BEHIND THE WORK</span><div className="stack-items">{profile.stackStrip.map(tool => <span key={tool}>{tool}</span>)}</div></div>
+        <div className="stack-strip"><span>THE TOOLS<br />BEHIND THE WORK</span><div className="stack-items">{stripTools.map(tool => <span key={tool}>{tool}</span>)}</div></div>
         <section id="projects" className="section">
           <div className="section-heading"><div><p className="eyebrow">01 / SELECTED WORK</p><h2>Built out of curiosity.<br />Made to be useful.</h2></div><a className="text-link" href={`https://github.com/${profile.github}?tab=repositories`} target="_blank" rel="noopener noreferrer">All repositories <ArrowUpRight size={16} /></a></div>
           <FeaturedProjects repositories={featuredRepos} />
