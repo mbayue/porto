@@ -8,7 +8,7 @@ const links = [
   ["Work", "projects"],
   ["Experience", "experience"],
   ["Toolkit", "skills"],
-  ["Open", "activity"],
+  ["GitHub", "activity"],
   ["About", "about"],
   ["Contact", "contact"],
 ];
@@ -20,7 +20,7 @@ export default function SiteHeader() {
     <header className="site-header">
       <div className="header-inner">
         <a className="wordmark" href="#hero" aria-label="Bayu Erich home">
-          bayu<span>.</span>
+          bayue<span>.</span>
         </a>
         <nav className="desktop-nav" aria-label="Main navigation">
           {links.map(([label, id]) => <a key={id} href={`#${id}`}>{label}</a>)}
