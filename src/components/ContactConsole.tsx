@@ -81,7 +81,7 @@ export default function ContactConsole() {
               onChange={(e) => setEmail(e.target.value)}
               disabled={status === "sending"}
               placeholder="visitor@domain.com"
-              className="w-full bg-slate-950 border border-slate-800 focus:border-emerald-500/50 outline-none p-3 rounded text-slate-200 placeholder-slate-700 font-mono"
+              className="w-full bg-slate-950 border border-slate-800 focus:border-emerald-500/50 focus-visible:ring-1 focus-visible:ring-emerald-500/50 outline-none p-3 rounded text-slate-200 placeholder-slate-700 font-mono"
             />
           </div>
 
@@ -95,8 +95,8 @@ export default function ContactConsole() {
               value={message}
               onChange={(e) => setMessage(e.target.value)}
               disabled={status === "sending"}
-              placeholder="Enter message details here..."
-              className="w-full bg-slate-950 border border-slate-800 focus:border-emerald-500/50 outline-none p-3 rounded text-slate-200 placeholder-slate-700 font-mono resize-none"
+              placeholder="Enter message details here…"
+              className="w-full bg-slate-950 border border-slate-800 focus:border-emerald-500/50 focus-visible:ring-1 focus-visible:ring-emerald-500/50 outline-none p-3 rounded text-slate-200 placeholder-slate-700 font-mono resize-none"
             />
           </div>
 
@@ -138,6 +138,7 @@ export default function ContactConsole() {
           </div>
 
           <button
+            type="button"
             onClick={() => setStatus("idle")}
             className="px-4 py-2 border border-slate-800 hover:border-emerald-500/50 text-slate-400 hover:text-emerald-400 font-bold text-xs rounded transition-all duration-200 cursor-pointer"
           >

@@ -6,7 +6,7 @@ export default function HeroSection() {
   return (
     <section id="hero" className="hero">
       <div className="hero-copy">
-        <p className="eyebrow"><span className="status-dot" /> Backend engineer, 3+ yrs prod, Indonesia</p>
+        <p className="eyebrow"><span className="status-dot" aria-hidden="true" /> Backend engineer, 3+ yrs prod, Indonesia</p>
         <h1>Good software.<br />Starts <span>under<br className="desktop-break" /> the hood.</span></h1>
         <p className="hero-description">I’m {profile.shortName}. I build APIs, work with databases, and keep the systems behind the screen running.</p>
         <div className="hero-metrics" aria-label="Career highlights">

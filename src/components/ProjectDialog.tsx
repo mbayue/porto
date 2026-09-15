@@ -24,7 +24,7 @@ export default function ProjectDialog({ project, onClose }: { project: Project |
     const bounds = event.currentTarget.getBoundingClientRect();
     if (event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom) onClose();
   }}>
-    {project && <><div className="dialog-heading"><h2 id="project-dialog-title">{project.name}</h2><button className="dialog-close" onClick={onClose} aria-label="Close project details" autoFocus><X size={20} /></button></div>
+    {project && <><div className="dialog-heading"><h2 id="project-dialog-title">{project.name}</h2><button type="button" className="dialog-close" onClick={onClose} aria-label="Close project details"><X size={20} /></button></div>
       <p className="dialog-description">{project.description || "Explore this project on GitHub."}</p>
       <div className="dialog-meta">{project.language && <span className="tag">{project.language}</span>}{project.stargazers_count !== undefined && <span className="tag">{project.stargazers_count} stars</span>}{project.forks_count !== undefined && <span className="tag">{project.forks_count} forks</span>}{project.pushed_at && <span className="tag">Updated {new Date(project.pushed_at).toLocaleDateString("en-US", { month: "short", year: "numeric", timeZone: "UTC" })}</span>}</div>
       {project.topics.length > 0 && <div className="project-tags">{project.topics.map(topic => <span className="tag" key={topic}>{topic}</span>)}</div>}

@@ -28,6 +28,7 @@ export default function TerminalHero() {
         {["help", "about", "work", "stack", "projects", "contact", "clear"].map((cmd) => (
           <button
             key={cmd}
+            type="button"
             onClick={() => handleCommandRun(cmd)}
             className="px-2 py-0.5 bg-slate-800 hover:bg-emerald-500/20 border border-slate-700 hover:border-emerald-500/50 text-slate-200 hover:text-emerald-400 text-xs font-mono rounded cursor-pointer transition-all duration-200"
           >
@@ -241,11 +242,11 @@ export default function TerminalHero() {
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={handleKeyDown}
           className="terminal-input min-w-0 flex-1 bg-transparent border-none outline-none focus:ring-0 focus:outline-none text-slate-200 caret-emerald-400 font-mono placeholder-slate-700"
-          placeholder="type command here..."
+          placeholder="Type command here…"
           autoComplete="off"
           autoCorrect="off"
-          autoCapitalize="off"
-          spellCheck="false"
+          autoCapitalize="none"
+          spellCheck={false}
         />
         <div className="flex items-center gap-1 text-xs text-slate-500 select-none shrink-0">
           <span>Enter</span>

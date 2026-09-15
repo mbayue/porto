@@ -31,6 +31,7 @@ export default function SiteHeader() {
             Get my CV <ArrowUpRight size={16} />
           </a>
           <button
+            type="button"
             className="menu-button"
             aria-label={open ? "Close navigation" : "Open navigation"}
             aria-expanded={open}

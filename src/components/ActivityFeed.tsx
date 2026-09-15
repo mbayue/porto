@@ -18,7 +18,7 @@ const types: Record<string, string> = { Commits: "PushEvent", Stars: "WatchEvent
 export default function ActivityFeed({ events }: { events: GitEvent[] }) {
   const [filter, setFilter] = useState("All");
   const filtered = events.slice(0, 15).filter(event => filter === "All" || event.type === types[filter]).slice(0, 5);
-  return <div><div className="activity-heading"><h3>Fresh from GitHub</h3><div className="activity-filters" aria-label="Filter GitHub activity">{filters.map(item => <button key={item} onClick={() => setFilter(item)} aria-pressed={filter === item}>{item}</button>)}</div></div>
+  return <div><div className="activity-heading"><h3>Fresh from GitHub</h3><div className="activity-filters" aria-label="Filter GitHub activity">{filters.map(item => <button key={item} type="button" onClick={() => setFilter(item)} aria-pressed={filter === item}>{item}</button>)}</div></div>
     <div>{filtered.map(event => {
       const Icon = event.type === "WatchEvent" ? Star : event.type === "PushEvent" ? GitCommit : GitBranch;
       const description = event.type === "PushEvent" ? event.payload?.commits?.[0]?.message.split("\n")[0] || "Pushed code changes" : event.type === "WatchEvent" ? "Starred a repository" : event.type === "CreateEvent" ? `Created ${event.payload?.ref_type || "repository"}${event.payload?.ref ? ` · ${event.payload.ref}` : ""}` : "Repository activity";

@@ -25,13 +25,13 @@ export default function FeaturedProjects({ repositories }: { repositories: Proje
   const [selected, setSelected] = useState<Project | null>(null);
   const categories = ["All work", ...new Set(repositories.map(getProjectCategory))];
   const filtered = repositories.filter(project => active === "All work" || getProjectCategory(project) === active);
-  return <div><div className="project-filters" aria-label="Filter projects">{categories.map(category => <button key={category} aria-pressed={active === category} onClick={() => setActive(category)}>{category}</button>)}</div>
+  return <div><div className="project-filters" aria-label="Filter projects">{categories.map(category => <button key={category} type="button" aria-pressed={active === category} onClick={() => setActive(category)}>{category}</button>)}</div>
     <div className="projects-grid">{filtered.map(project => {
       const details = projectDetails[project.name];
       const description = details?.description || project.description || "Explore the source and documentation on GitHub.";
       return <article className="project-card" key={project.name}>
         <ProjectVisual name={project.name} index={repositories.indexOf(project)} />
-        <div className="project-content"><div className="project-title-row"><h3>{project.name}</h3><button className="project-open" aria-label={`View ${project.name} details`} onClick={() => setSelected({ ...project, description })}><ArrowUpRight size={20} /></button></div><p>{description}</p>
+        <div className="project-content"><div className="project-title-row"><h3>{project.name}</h3><button type="button" className="project-open" aria-label={`View ${project.name} details`} onClick={() => setSelected({ ...project, description })}><ArrowUpRight size={20} /></button></div><p>{description}</p>
 {(profile.impacts as Record<string, string>)[project.name] && <span className="impact-line">→ {(profile.impacts as Record<string, string>)[project.name]}</span>}
 <div className="project-bottom"><div className="project-tags">{(details?.stack || [project.language || "Source code"]).map(tech => <span className="tag" key={tech}>{tech}</span>)}</div>{project.stargazers_count !== undefined && <span className="project-stars" aria-label={`${project.stargazers_count} GitHub stars`}><Star size={13} />{project.stargazers_count}</span>}</div></div>
       </article>;
