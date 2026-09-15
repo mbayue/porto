@@ -14,7 +14,8 @@ import ContactSection from "@/components/ContactSection";
 import { profile } from "@/data/profile";
 
 const stripTools = [
-  ...profile.skills.backend.slice(0, 2),
+  profile.skills.languages[0],
+  profile.skills.languages[2],
   ...profile.skills.database.slice(0, 2),
   ...profile.skills.cloud.slice(0, 2),
 ];
