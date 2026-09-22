@@ -167,6 +167,10 @@ export default function ApiConsolePage() {
     desc: "endpoint",
   };
 
+  // Canonical API URL: /api has no trailing slash (Next 308s /api/ -> /api)
+  const apiUrl =
+    `https://bayue.my.id/api${currentPath === "/" ? "" : currentPath}`;
+
   const responseData =
     currentPath === "/github" && liveGithub
       ? liveGithub
@@ -260,7 +264,7 @@ export default function ApiConsolePage() {
 
             <button
               type="button"
-              onClick={() => copyToClipboard(`curl https://bayue.my.id/api${currentPath}`, true)}
+              onClick={() => copyToClipboard(`curl ${apiUrl}`, true)}
               className="px-4 py-2 border border-[#222222] text-[#ededed] font-medium text-xs hover:border-white transition-colors inline-flex items-center gap-2"
             >
               {copiedCurl ? <Check className="w-3.5 h-3.5 text-[#03b000]" aria-hidden="true" /> : <Copy className="w-3.5 h-3.5" aria-hidden="true" />}
@@ -343,9 +347,8 @@ export default function ApiConsolePage() {
                   >
                     {currentRouteData.method}
                   </span>
-                  <span className="text-xs text-white truncate">
-                    <span className="text-[#8a8a8a]">https://bayue.my.id/api</span>
-                    <span className="font-semibold text-white">{currentPath}</span>
+                  <span className="text-xs text-white truncate" translate="no">
+                    {apiUrl}
                   </span>
                 </div>
 
@@ -373,7 +376,7 @@ export default function ApiConsolePage() {
 
                   <button
                     type="button"
-                    onClick={() => copyToClipboard(`curl -s https://bayue.my.id/api${currentPath}`, true)}
+                    onClick={() => copyToClipboard(`curl -s ${apiUrl}`, true)}
                     className="border border-[#222222] px-3 py-1.5 min-h-[32px] sm:min-h-[30px] text-xs text-[#8a8a8a] hover:text-white hover:border-white transition-colors inline-flex items-center gap-1.5"
                   >
                     {copiedCurl ? <Check className="w-3.5 h-3.5 text-[#03b000]" aria-hidden="true" /> : <Copy className="w-3.5 h-3.5" aria-hidden="true" />}
@@ -695,7 +698,7 @@ export default function ApiConsolePage() {
               {/* Console Foot Note */}
               <div className="p-3 border-t border-[#222222] bg-[#0c0c0c] text-[11px] text-[#8a8a8a] flex flex-wrap items-center justify-between gap-2">
                 <span>Tip: Click any brace or key to collapse a node</span>
-                <span className="text-[#888888]">curl https://bayue.my.id/api{currentPath}</span>
+                <span className="text-[#888888]" translate="no">curl {apiUrl}</span>
               </div>
             </div>
           </div>
