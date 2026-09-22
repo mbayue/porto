@@ -440,27 +440,35 @@ export default function ApiConsolePage() {
                         className="space-y-3"
                       >
                         <div>
-                          <label className="block text-[11px] text-[#888888] mb-1 font-mono">
+                          <label htmlFor="msg-email" className="block text-[11px] text-[#888888] mb-1 font-mono">
                             {`"sender_email"`}: string
                           </label>
                           <input
+                            id="msg-email"
+                            name="sender_email"
                             type="email"
+                            autoComplete="email"
+                            spellCheck={false}
                             value={msgEmail}
                             onChange={(e) => setMsgEmail(e.target.value)}
-                            placeholder="your.email@company.com"
+                            placeholder="your.email@company.com…"
                             required
+                            aria-required="true"
                             className="w-full bg-black border border-[#222222] px-3 py-1.5 text-xs text-white font-mono focus:border-white focus:outline-none"
                           />
                         </div>
                         <div>
-                          <label className="block text-[11px] text-[#888888] mb-1 font-mono">
+                          <label htmlFor="msg-body" className="block text-[11px] text-[#888888] mb-1 font-mono">
                             {`"body"`}: string
                           </label>
                           <textarea
+                            id="msg-body"
+                            name="body"
                             value={msgBody}
                             onChange={(e) => setMsgBody(e.target.value)}
-                            placeholder="Type your message, opportunity, or question..."
+                            placeholder="Type your message, opportunity, or question…"
                             required
+                            aria-required="true"
                             rows={3}
                             className="w-full bg-black border border-[#222222] px-3 py-1.5 text-xs text-white font-mono focus:border-white focus:outline-none resize-none"
                           />
@@ -476,7 +484,7 @@ export default function ApiConsolePage() {
                     </div>
 
                     {msgResponse && (
-                      <div className="p-3 border border-[#03b000]/40 bg-[#061405]">
+                      <div role="status" aria-live="polite" className="p-3 border border-[#03b000]/40 bg-[#061405]">
                         <div className="text-[11px] text-[#03b000] font-semibold mb-1">
                           HTTP 201 Created • Payload Dispatched
                         </div>
