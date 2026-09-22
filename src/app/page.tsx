@@ -156,6 +156,14 @@ export default function ApiConsolePage() {
     window.history.replaceState(null, "", url.toString());
   }, [viewMode]);
 
+  // Warn before leaving with an unsent message in the form
+  useEffect(() => {
+    if (!msgEmail && !msgBody) return;
+    const handler = (e: BeforeUnloadEvent) => e.preventDefault();
+    window.addEventListener("beforeunload", handler);
+    return () => window.removeEventListener("beforeunload", handler);
+  }, [msgEmail, msgBody]);
+
   const selectRoute = (path: string) => {
     setCurrentPath(path);
     window.location.hash = path;
@@ -300,9 +308,10 @@ export default function ApiConsolePage() {
                   const isActive = currentPath === route.path;
                   return (
                     <li key={route.path} className="w-full">
-                      <button
-                        type="button"
+                      <a
+                        href={`#${route.path}`}
                         onClick={() => selectRoute(route.path)}
+                        aria-current={isActive ? "page" : undefined}
                         className={`w-full text-left p-3 flex items-start gap-2.5 transition-colors ${
                           isActive
                             ? "bg-[#141414] border-l-2 border-white"
@@ -326,7 +335,7 @@ export default function ApiConsolePage() {
                             {route.desc}
                           </div>
                         </div>
-                      </button>
+                      </a>
                     </li>
                   );
                 })}
@@ -457,7 +466,7 @@ export default function ApiConsolePage() {
                             placeholder="your.email@company.com…"
                             required
                             aria-required="true"
-                            className="w-full bg-black border border-[#222222] px-3 py-1.5 text-xs text-white font-mono focus:border-white focus:outline-none"
+                            className="w-full bg-black border border-[#222222] px-3 py-1.5 text-xs text-white font-mono focus:border-white"
                           />
                         </div>
                         <div>
@@ -473,7 +482,7 @@ export default function ApiConsolePage() {
                             required
                             aria-required="true"
                             rows={3}
-                            className="w-full bg-black border border-[#222222] px-3 py-1.5 text-xs text-white font-mono focus:border-white focus:outline-none resize-none"
+                            className="w-full bg-black border border-[#222222] px-3 py-1.5 text-xs text-white font-mono focus:border-white resize-none"
                           />
                         </div>
                         <button
@@ -755,7 +764,7 @@ export default function ApiConsolePage() {
             <div className="text-[#8a8a8a] select-none"># Query live from your own terminal</div>
             <div className="mt-1 text-white font-medium flex items-center gap-2">
               <span className="text-[#03b000] select-none">$</span>
-              <span>curl -s https://bayue.my.id/api/projects | jq '.data[].name'</span>
+              <span translate="no">curl -s https://bayue.my.id/api/projects | jq '.data[].name'</span>
             </div>
             <div className="mt-2 text-[#888888] space-y-0.5">
               <div>"gitSdm"</div>

@@ -165,7 +165,7 @@ export default function CvPage() {
                 {Object.entries(github.languages as Record<string, number>).map(([lang, pct]) => (
                   <div key={lang} className="flex justify-between py-0.5 border-b border-[#e2e3e1]">
                     <span className="text-[#5c626b]">{lang}</span>
-                    <span className="font-mono">{pct}%</span>
+                    <span className="font-mono tabular-nums">{pct}%</span>
                   </div>
                 ))}
               </div>
