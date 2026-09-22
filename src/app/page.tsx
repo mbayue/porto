@@ -211,7 +211,7 @@ export default function ApiConsolePage() {
 
           <div className="flex items-center gap-2 sm:gap-2.5">
             <span className="hidden sm:inline-flex items-center gap-1.5 text-xs text-[#03b000] border border-[#03b000]/40 px-2.5 py-1">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#03b000] animate-pulse" aria-hidden="true" />
+              <span className="w-1.5 h-1.5 rounded-full bg-[#03b000] animate-pulse motion-reduce:animate-none" aria-hidden="true" />
               <span>200 OK</span>
             </span>
 
@@ -402,7 +402,7 @@ export default function ApiConsolePage() {
                   <span>application/json</span>
                   {currentPath === "/github" && (
                     <span className="inline-flex items-center gap-1 text-[10px] text-[#03b000] border border-[#03b000]/40 px-1.5 py-0.5 ml-1">
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#03b000] animate-pulse" aria-hidden="true" />
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#03b000] animate-pulse motion-reduce:animate-none" aria-hidden="true" />
                       <span>{liveGithub?._meta?.status === "live" ? "LIVE SYNC" : "GITHUB"}</span>
                     </span>
                   )}

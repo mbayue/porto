@@ -17,8 +17,8 @@ export default function CvPage() {
   const github = API_DATA["/github"];
 
   return (
-    <div className={`min-h-screen bg-white text-[#16181d] font-sans antialiased selection:bg-black selection:text-white transition-all duration-200`}>
-      <main id="main-content" className={`max-w-[1080px] mx-auto px-4 sm:px-8 transition-all duration-200 ${compact ? "py-4" : "py-6 sm:py-10"}`}>
+    <div className={`min-h-screen bg-white text-[#16181d] font-sans antialiased selection:bg-black selection:text-white`}>
+      <main id="main-content" className={`max-w-[1080px] mx-auto px-4 sm:px-8 ${compact ? "py-4" : "py-6 sm:py-10"}`}>
         {/* Navigation / Actions Bar */}
         <div className={`flex flex-wrap items-center justify-between gap-4 border-b border-[#e2e3e1] print:hidden ${compact ? "pb-2" : "pb-4"}`}>
           <div className="font-mono text-xs text-[#525866] flex items-center gap-2">
@@ -56,9 +56,9 @@ export default function CvPage() {
         </div>
 
         {/* Header */}
-        <header className={`border-b-2 border-[#16181d] transition-all ${compact ? "py-3" : "py-6"}`}>
+        <header className={`border-b-2 border-[#16181d] ${compact ? "py-3" : "py-6"}`}>
           <div className="flex flex-wrap items-baseline justify-between gap-2">
-            <h1 className={`font-bold tracking-tight text-[#16181d] transition-all ${compact ? "text-2xl sm:text-3xl" : "text-3xl sm:text-4xl"}`}>
+            <h1 className={`font-bold tracking-tight text-[#16181d] ${compact ? "text-2xl sm:text-3xl" : "text-3xl sm:text-4xl"}`}>
               {profile.name}
             </h1>
             <span className="font-mono text-xs sm:text-sm font-semibold uppercase tracking-wider text-[#16181d]">
@@ -68,7 +68,7 @@ export default function CvPage() {
           <p className="font-mono text-[11px] sm:text-xs text-[#5c626b] mt-0.5">
             {profile.location} • open to backend roles and contracts
           </p>
-          <p className={`text-[#33383f] max-w-4xl leading-relaxed transition-all ${compact ? "mt-1.5 text-xs sm:text-[13px]" : "mt-3 text-sm sm:text-base"}`}>
+          <p className={`text-[#33383f] max-w-4xl leading-relaxed ${compact ? "mt-1.5 text-xs sm:text-[13px]" : "mt-3 text-sm sm:text-base"}`}>
             {profile.summary}
           </p>
 
@@ -89,9 +89,9 @@ export default function CvPage() {
         </header>
 
         {/* 2-Column Content */}
-        <div className={`grid grid-cols-1 md:grid-cols-12 transition-all ${compact ? "gap-4 pt-3" : "gap-8 pt-6"}`}>
+        <div className={`grid grid-cols-1 md:grid-cols-12 ${compact ? "gap-4 pt-3" : "gap-8 pt-6"}`}>
           {/* Left Column (Toolkit, Stats, Education) */}
-          <aside className={`md:col-span-4 transition-all md:border-r md:border-[#e2e3e1] ${compact ? "space-y-3.5 md:pr-4" : "space-y-6 md:pr-6"}`}>
+          <aside className={`md:col-span-4 md:border-r md:border-[#e2e3e1] ${compact ? "space-y-3.5 md:pr-4" : "space-y-6 md:pr-6"}`}>
             {/* Toolkit */}
             <section>
               <h2 className={`font-mono text-xs font-semibold tracking-widest uppercase text-[#16181d] border-b border-[#e2e3e1] ${compact ? "pb-1 mb-1.5" : "pb-1.5 mb-3"}`}>
@@ -176,7 +176,7 @@ export default function CvPage() {
               <h2 className={`font-mono text-xs font-semibold tracking-widest uppercase text-[#16181d] border-b border-[#e2e3e1] ${compact ? "pb-1 mb-1.5" : "pb-1.5 mb-3"}`}>
                 Education
               </h2>
-              <div className={`transition-all ${compact ? "space-y-1.5" : "space-y-3"}`}>
+              <div className={`${compact ? "space-y-1.5" : "space-y-3"}`}>
                 {profile.education.map((edu) => (
                   <div key={edu.institution} className="text-xs">
                     <b className="block text-xs font-semibold text-[#16181d]">{edu.institution}</b>
@@ -191,13 +191,13 @@ export default function CvPage() {
           </aside>
 
           {/* Right Column (Experience + Selected Projects) */}
-          <section className={`md:col-span-8 transition-all ${compact ? "space-y-3.5" : "space-y-6"}`}>
+          <section className={`md:col-span-8 ${compact ? "space-y-3.5" : "space-y-6"}`}>
             {/* Experience */}
             <div>
               <h2 className={`font-mono text-xs font-semibold tracking-widest uppercase text-[#16181d] border-b border-[#e2e3e1] ${compact ? "pb-1 mb-2" : "pb-1.5 mb-4"}`}>
                 Experience
               </h2>
-              <div className={`transition-all ${compact ? "space-y-2.5" : "space-y-5"}`}>
+              <div className={`${compact ? "space-y-2.5" : "space-y-5"}`}>
                 {profile.experience.map((exp) => (
                   <div key={exp.company} className={`border-b border-[#e2e3e1] last:border-b-0 ${compact ? "pb-2" : "pb-4"}`}>
                     <div className="flex flex-wrap items-baseline justify-between gap-1">
@@ -224,7 +224,7 @@ export default function CvPage() {
               <h2 className={`font-mono text-xs font-semibold tracking-widest uppercase text-[#16181d] border-b border-[#e2e3e1] ${compact ? "pb-1 mb-2" : "pb-1.5 mb-4"}`}>
                 Selected Projects
               </h2>
-              <div className={`transition-all ${compact ? "space-y-2" : "space-y-4"}`}>
+              <div className={`${compact ? "space-y-2" : "space-y-4"}`}>
                 {projects.map((proj: any) => (
                   <div key={proj.name} className={`border-b border-[#e2e3e1] last:border-b-0 ${compact ? "pb-1.5" : "pb-3"}`}>
                     <div className="flex flex-wrap items-baseline justify-between gap-2">
