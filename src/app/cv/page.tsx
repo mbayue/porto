@@ -18,12 +18,12 @@ export default function CvPage() {
 
   return (
     <div className={`min-h-screen bg-white text-[#16181d] font-sans antialiased selection:bg-black selection:text-white transition-all duration-200`}>
-      <main className={`max-w-[1080px] mx-auto px-4 sm:px-8 transition-all duration-200 ${compact ? "py-4" : "py-6 sm:py-10"}`}>
+      <main id="main-content" className={`max-w-[1080px] mx-auto px-4 sm:px-8 transition-all duration-200 ${compact ? "py-4" : "py-6 sm:py-10"}`}>
         {/* Navigation / Actions Bar */}
         <div className={`flex flex-wrap items-center justify-between gap-4 border-b border-[#e2e3e1] print:hidden ${compact ? "pb-2" : "pb-4"}`}>
           <div className="font-mono text-xs text-[#525866] flex items-center gap-2">
             <Link href="/" className="inline-flex items-center gap-1.5 hover:text-black hover:underline font-semibold py-1">
-              <ArrowLeft className="w-3.5 h-3.5" />
+              <ArrowLeft className="w-3.5 h-3.5" aria-hidden="true" />
               <span>bayue.my.id</span>
             </Link>
             <span>/</span>
@@ -34,11 +34,12 @@ export default function CvPage() {
             <button
               type="button"
               onClick={() => setCompact(!compact)}
+              aria-pressed={compact}
               className={`px-2.5 sm:px-3 py-1.5 min-h-[36px] border border-[#9ca3af] transition-colors flex items-center gap-1.5 whitespace-nowrap ${
                 compact ? "bg-black text-white border-black font-semibold" : "hover:bg-neutral-100"
               }`}
             >
-              <Minimize2 className="w-3.5 h-3.5 shrink-0" />
+              <Minimize2 className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
               <span className="hidden sm:inline">{compact ? "Exit Compact" : "Compact View"}</span>
               <span className="sm:hidden">{compact ? "Normal" : "Compact"}</span>
             </button>
@@ -47,7 +48,7 @@ export default function CvPage() {
               onClick={handlePrint}
               className="px-2.5 sm:px-3 py-1.5 min-h-[36px] bg-black text-white border border-black hover:bg-neutral-800 transition-colors flex items-center gap-1.5 font-medium whitespace-nowrap"
             >
-              <Printer className="w-3.5 h-3.5 shrink-0" />
+              <Printer className="w-3.5 h-3.5 shrink-0" aria-hidden="true" />
               <span className="hidden sm:inline">Print / Save PDF</span>
               <span className="sm:hidden">Print PDF</span>
             </button>
@@ -138,19 +139,19 @@ export default function CvPage() {
               <div className={`text-xs ${compact ? "space-y-0.5" : "space-y-1.5"}`}>
                 <div className="flex justify-between py-0.5 border-b border-[#e2e3e1]">
                   <span className="text-[#5c626b]">Public repositories</span>
-                  <span className="font-mono font-semibold">{github.public_repositories}</span>
+                  <span className="font-mono font-semibold tabular-nums">{github.public_repositories}</span>
                 </div>
                 <div className="flex justify-between py-0.5 border-b border-[#e2e3e1]">
                   <span className="text-[#5c626b]">Original projects</span>
-                  <span className="font-mono font-semibold">{github.original_projects}</span>
+                  <span className="font-mono font-semibold tabular-nums">{github.original_projects}</span>
                 </div>
                 <div className="flex justify-between py-0.5 border-b border-[#e2e3e1]">
                   <span className="text-[#5c626b]">Repository stars</span>
-                  <span className="font-mono font-semibold">{github.repository_stars}</span>
+                  <span className="font-mono font-semibold tabular-nums">{github.repository_stars}</span>
                 </div>
                 <div className="flex justify-between py-0.5 border-b border-[#e2e3e1]">
                   <span className="text-[#5c626b]">GitHub followers</span>
-                  <span className="font-mono font-semibold">{github.followers}</span>
+                  <span className="font-mono font-semibold tabular-nums">{github.followers}</span>
                 </div>
               </div>
             </section>
@@ -235,7 +236,7 @@ export default function CvPage() {
                           className="font-mono font-semibold text-xs sm:text-sm hover:underline inline-flex items-center gap-1"
                         >
                           <span>{proj.name}</span>
-                          <ExternalLink className="w-2.5 h-2.5 text-[#525866]" />
+                          <ExternalLink className="w-2.5 h-2.5 text-[#525866]" aria-hidden="true" />
                         </a>
                         <span className="text-[10px] font-mono text-[#525866] uppercase">
                           {proj.category}

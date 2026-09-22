@@ -178,7 +178,7 @@ export default function ApiConsolePage() {
         <div className="max-w-[1280px] mx-auto px-4 sm:px-8 h-[62px] flex items-center justify-between gap-4">
           <div className="flex items-center gap-3">
             <Link href="/" className="font-semibold text-sm tracking-tight text-white flex items-center gap-1.5 py-2">
-              <span>bayue.my.id</span>
+              <span translate="no">bayue.my.id</span>
             </Link>
             <span className="text-[11px] text-[#999999] border border-[#222222] px-2 py-0.5">
               v2.1.0
@@ -187,7 +187,7 @@ export default function ApiConsolePage() {
 
           <div className="flex items-center gap-2 sm:gap-2.5">
             <span className="hidden sm:inline-flex items-center gap-1.5 text-xs text-[#03b000] border border-[#03b000]/40 px-2.5 py-1">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#03b000] animate-pulse" />
+              <span className="w-1.5 h-1.5 rounded-full bg-[#03b000] animate-pulse" aria-hidden="true" />
               <span>200 OK</span>
             </span>
 
@@ -195,7 +195,7 @@ export default function ApiConsolePage() {
               href="/cv"
               className="inline-flex items-center gap-1.5 text-xs font-medium text-black bg-white hover:bg-[#e0e0e0] border border-white px-3 py-1.5 min-h-[36px] transition-colors whitespace-nowrap shrink-0"
             >
-              <FileText className="w-3.5 h-3.5" />
+              <FileText className="w-3.5 h-3.5" aria-hidden="true" />
               <span className="hidden sm:inline">Get my CV</span>
               <span className="sm:hidden">CV</span>
             </Link>
@@ -203,7 +203,7 @@ export default function ApiConsolePage() {
         </div>
       </header>
 
-      <main className="max-w-[1280px] mx-auto px-4 sm:px-8">
+      <main id="main-content" className="max-w-[1280px] mx-auto px-4 sm:px-8">
         {/* Masthead */}
         <section className="py-12 sm:py-16 border-b border-[#181818]">
           <div className="flex flex-wrap items-center gap-2 text-xs text-[#888888] mb-5">
@@ -234,7 +234,7 @@ export default function ApiConsolePage() {
               }}
               className="px-4 py-2 bg-white text-black font-medium text-xs hover:bg-[#e0e0e0] transition-colors inline-flex items-center gap-2"
             >
-              <Terminal className="w-3.5 h-3.5" />
+              <Terminal className="w-3.5 h-3.5" aria-hidden="true" />
               <span>Explore endpoints</span>
             </button>
 
@@ -243,15 +243,15 @@ export default function ApiConsolePage() {
               onClick={() => copyToClipboard(`curl https://bayue.my.id/api${currentPath}`, true)}
               className="px-4 py-2 border border-[#222222] text-[#ededed] font-medium text-xs hover:border-white transition-colors inline-flex items-center gap-2"
             >
-              {copiedCurl ? <Check className="w-3.5 h-3.5 text-[#03b000]" /> : <Copy className="w-3.5 h-3.5" />}
-              <span>{copiedCurl ? "Copied curl" : "Copy curl"}</span>
+              {copiedCurl ? <Check className="w-3.5 h-3.5 text-[#03b000]" aria-hidden="true" /> : <Copy className="w-3.5 h-3.5" aria-hidden="true" />}
+              <span aria-live="polite">{copiedCurl ? "Copied curl" : "Copy curl"}</span>
             </button>
 
             <a
               href="mailto:bayu.erich@gmail.com"
               className="px-4 py-2 border border-[#222222] text-[#888888] hover:text-white hover:border-white transition-colors text-xs inline-flex items-center gap-1.5"
             >
-              <Mail className="w-3.5 h-3.5" />
+              <Mail className="w-3.5 h-3.5" aria-hidden="true" />
               <span>Let's talk</span>
             </a>
           </div>
@@ -356,8 +356,8 @@ export default function ApiConsolePage() {
                     onClick={() => copyToClipboard(`curl -s https://bayue.my.id/api${currentPath}`, true)}
                     className="border border-[#222222] px-3 py-1.5 min-h-[32px] sm:min-h-[30px] text-xs text-[#8a8a8a] hover:text-white hover:border-white transition-colors inline-flex items-center gap-1.5"
                   >
-                    {copiedCurl ? <Check className="w-3.5 h-3.5 text-[#03b000]" /> : <Copy className="w-3.5 h-3.5" />}
-                    <span>{copiedCurl ? "Copied" : "curl"}</span>
+                    {copiedCurl ? <Check className="w-3.5 h-3.5 text-[#03b000]" aria-hidden="true" /> : <Copy className="w-3.5 h-3.5" aria-hidden="true" />}
+                    <span aria-live="polite">{copiedCurl ? "Copied" : "curl"}</span>
                   </button>
 
                   <button
@@ -365,8 +365,8 @@ export default function ApiConsolePage() {
                     onClick={() => copyToClipboard(JSON.stringify(responseData, null, 2), false)}
                     className="border border-[#222222] px-3 py-1.5 min-h-[32px] sm:min-h-[30px] text-xs text-[#8a8a8a] hover:text-white hover:border-white transition-colors inline-flex items-center gap-1.5"
                   >
-                    {copiedJson ? <Check className="w-3.5 h-3.5 text-[#03b000]" /> : <Code2 className="w-3.5 h-3.5" />}
-                    <span>{copiedJson ? "Copied" : "JSON"}</span>
+                    {copiedJson ? <Check className="w-3.5 h-3.5 text-[#03b000]" aria-hidden="true" /> : <Code2 className="w-3.5 h-3.5" aria-hidden="true" />}
+                    <span aria-live="polite">{copiedJson ? "Copied" : "JSON"}</span>
                   </button>
                 </div>
               </div>
@@ -379,7 +379,7 @@ export default function ApiConsolePage() {
                   <span>application/json</span>
                   {currentPath === "/github" && (
                     <span className="inline-flex items-center gap-1 text-[10px] text-[#03b000] border border-[#03b000]/40 px-1.5 py-0.5 ml-1">
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#03b000] animate-pulse" />
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#03b000] animate-pulse" aria-hidden="true" />
                       <span>{liveGithub?._meta?.status === "live" ? "LIVE SYNC" : "GITHUB"}</span>
                     </span>
                   )}
@@ -390,7 +390,7 @@ export default function ApiConsolePage() {
               </div>
 
               {/* Response Body */}
-              <div className="p-4 sm:p-6 overflow-y-auto h-[500px] bg-[#080808]">
+              <div className="p-4 sm:p-6 overflow-y-auto overscroll-contain h-[500px] bg-[#080808]">
                 {currentPath === "/messages" ? (
                   <div className="space-y-4">
                     <div className="p-4 border border-[#222222] bg-[#0c0c0c]">
@@ -449,7 +449,7 @@ export default function ApiConsolePage() {
                           type="submit"
                           className="px-4 py-2 bg-white text-black text-xs font-semibold hover:bg-[#e0e0e0] transition-colors inline-flex items-center gap-2"
                         >
-                          <Terminal className="w-3.5 h-3.5" />
+                          <Terminal className="w-3.5 h-3.5" aria-hidden="true" />
                           <span>Dispatch POST /messages</span>
                         </button>
                       </form>
@@ -460,7 +460,7 @@ export default function ApiConsolePage() {
                         <div className="text-[11px] text-[#03b000] font-semibold mb-1">
                           HTTP 201 Created • Payload Dispatched
                         </div>
-                        <pre className="text-xs text-[#b8f5b4] whitespace-pre-wrap">
+                        <pre className="text-xs text-[#b8f5b4] whitespace-pre-wrap break-words">
                           {JSON.stringify(msgResponse, null, 2)}
                         </pre>
                       </div>
@@ -480,7 +480,7 @@ export default function ApiConsolePage() {
                         </div>
                         {responseData.data?.map((p: any) => (
                           <div key={p.name} className="p-3 border border-[#222222] bg-[#0f0f0f]">
-                            <div className="flex justify-between items-baseline gap-2">
+                            <div className="flex justify-between items-baseline gap-2 min-w-0">
                               <a
                                 href={p.url}
                                 target="_blank"
@@ -488,7 +488,7 @@ export default function ApiConsolePage() {
                                 className="font-semibold text-white hover:underline inline-flex items-center gap-1"
                               >
                                 <span>{p.name}</span>
-                                <ExternalLink className="w-3 h-3 text-[#666666]" />
+                                <ExternalLink className="w-3 h-3 text-[#666666]" aria-hidden="true" />
                               </a>
                               <span className="text-[10px] uppercase text-[#666666] border border-[#222222] px-1.5 py-0.5">
                                 {p.category}
@@ -531,25 +531,25 @@ export default function ApiConsolePage() {
                         <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
                           <div className="p-3 border border-[#222222] bg-[#0f0f0f]">
                             <div className="text-[10px] uppercase text-[#666666]">Public Repos</div>
-                            <div className="text-xl font-semibold text-white mt-0.5">
+                            <div className="text-xl font-semibold text-white mt-0.5 tabular-nums">
                               {responseData.public_repositories ?? "—"}
                             </div>
                           </div>
                           <div className="p-3 border border-[#222222] bg-[#0f0f0f]">
                             <div className="text-[10px] uppercase text-[#666666]">Followers</div>
-                            <div className="text-xl font-semibold text-white mt-0.5">
+                            <div className="text-xl font-semibold text-white mt-0.5 tabular-nums">
                               {responseData.followers ?? "—"}
                             </div>
                           </div>
                           <div className="p-3 border border-[#222222] bg-[#0f0f0f]">
                             <div className="text-[10px] uppercase text-[#666666]">Following</div>
-                            <div className="text-xl font-semibold text-white mt-0.5">
+                            <div className="text-xl font-semibold text-white mt-0.5 tabular-nums">
                               {responseData.following ?? "—"}
                             </div>
                           </div>
                           <div className="p-3 border border-[#222222] bg-[#0f0f0f]">
                             <div className="text-[10px] uppercase text-[#666666]">Public Gists</div>
-                            <div className="text-xl font-semibold text-white mt-0.5">
+                            <div className="text-xl font-semibold text-white mt-0.5 tabular-nums">
                               {responseData.public_gists ?? "—"}
                             </div>
                           </div>
@@ -576,7 +576,7 @@ export default function ApiConsolePage() {
                       </div>
                     ) : (
                       <div className="p-4 border border-[#222222] bg-[#0f0f0f] space-y-3">
-                        <pre className="text-xs text-[#ededed] whitespace-pre-wrap leading-relaxed">
+                        <pre className="text-xs text-[#ededed] whitespace-pre-wrap break-words leading-relaxed">
                           {JSON.stringify(responseData, null, 2)}
                         </pre>
                       </div>
@@ -593,7 +593,7 @@ export default function ApiConsolePage() {
                       rel="noopener noreferrer"
                       className="px-3 py-1.5 border border-[#333333] text-white hover:border-white text-xs inline-flex items-center gap-1.5 transition-colors"
                     >
-                      <ExternalLink className="w-3 h-3" />
+                      <ExternalLink className="w-3 h-3" aria-hidden="true" />
                       <span>All GitHub repositories</span>
                     </a>
                   )}
@@ -603,7 +603,7 @@ export default function ApiConsolePage() {
                       href="/cv"
                       className="px-3 py-1.5 bg-white text-black text-xs font-medium hover:bg-[#e0e0e0] inline-flex items-center gap-1.5 transition-colors"
                     >
-                      <FileText className="w-3 h-3" />
+                      <FileText className="w-3 h-3" aria-hidden="true" />
                       <span>View complete CV sheet</span>
                     </Link>
                   )}
@@ -615,7 +615,7 @@ export default function ApiConsolePage() {
                       rel="noopener noreferrer"
                       className="px-3 py-1.5 border border-[#333333] text-white hover:border-white text-xs inline-flex items-center gap-1.5 transition-colors"
                     >
-                      <ExternalLink className="w-3 h-3" />
+                      <ExternalLink className="w-3 h-3" aria-hidden="true" />
                       <span>Open github.com/mbayue</span>
                     </a>
                   )}
@@ -626,7 +626,7 @@ export default function ApiConsolePage() {
                         href="mailto:bayu.erich@gmail.com"
                         className="px-3 py-1.5 bg-white text-black text-xs font-medium hover:bg-[#e0e0e0] inline-flex items-center gap-1.5 transition-colors"
                       >
-                        <Mail className="w-3 h-3" />
+                        <Mail className="w-3 h-3" aria-hidden="true" />
                         <span>Email directly</span>
                       </a>
                       <button
@@ -638,8 +638,8 @@ export default function ApiConsolePage() {
                         }}
                         className="px-3 py-1.5 border border-[#333333] text-white hover:border-white text-xs inline-flex items-center gap-1.5 transition-colors"
                       >
-                        {copiedEmail ? <Check className="w-3 h-3 text-[#03b000]" /> : <Copy className="w-3 h-3" />}
-                        <span>{copiedEmail ? "Copied" : "Copy email address"}</span>
+                        {copiedEmail ? <Check className="w-3 h-3 text-[#03b000]" aria-hidden="true" /> : <Copy className="w-3 h-3" aria-hidden="true" />}
+                        <span aria-live="polite">{copiedEmail ? "Copied" : "Copy email address"}</span>
                       </button>
                       <a
                         href="https://github.com/mbayue"
@@ -647,7 +647,7 @@ export default function ApiConsolePage() {
                         rel="noopener noreferrer"
                         className="px-3 py-1.5 border border-[#333333] text-white hover:border-white text-xs inline-flex items-center gap-1.5 transition-colors"
                       >
-                        <ExternalLink className="w-3 h-3" />
+                        <ExternalLink className="w-3 h-3" aria-hidden="true" />
                         <span>GitHub</span>
                       </a>
                       <a
@@ -656,7 +656,7 @@ export default function ApiConsolePage() {
                         rel="noopener noreferrer"
                         className="px-3 py-1.5 border border-[#333333] text-white hover:border-white text-xs inline-flex items-center gap-1.5 transition-colors"
                       >
-                        <ExternalLink className="w-3 h-3" />
+                        <ExternalLink className="w-3 h-3" aria-hidden="true" />
                         <span>LinkedIn</span>
                       </a>
                     </div>
@@ -681,7 +681,7 @@ export default function ApiConsolePage() {
               className="p-5 border border-[#1c1c1c] bg-[#080808] hover:border-[#444444] transition-colors cursor-pointer group"
             >
               <div className="text-xs text-white font-semibold flex items-center gap-1.5 group-hover:underline">
-                <Layers className="w-3.5 h-3.5" />
+                <Layers className="w-3.5 h-3.5" aria-hidden="true" />
                 <span>GET /architecture</span>
               </div>
               <p className="mt-2 text-xs text-[#888888] leading-relaxed">
@@ -694,7 +694,7 @@ export default function ApiConsolePage() {
               className="p-5 border border-[#1c1c1c] bg-[#080808] hover:border-[#444444] transition-colors cursor-pointer group"
             >
               <div className="text-xs text-white font-semibold flex items-center gap-1.5 group-hover:underline">
-                <Code2 className="w-3.5 h-3.5" />
+                <Code2 className="w-3.5 h-3.5" aria-hidden="true" />
                 <span>GET /projects</span>
               </div>
               <p className="mt-2 text-xs text-[#888888] leading-relaxed">
@@ -707,7 +707,7 @@ export default function ApiConsolePage() {
               className="p-5 border border-[#1c1c1c] bg-[#080808] hover:border-[#444444] transition-colors cursor-pointer group"
             >
               <div className="text-xs text-white font-semibold flex items-center gap-1.5 group-hover:underline">
-                <Mail className="w-3.5 h-3.5" />
+                <Mail className="w-3.5 h-3.5" aria-hidden="true" />
                 <span>POST /messages</span>
               </div>
               <p className="mt-2 text-xs text-[#888888] leading-relaxed">
@@ -773,7 +773,7 @@ export default function ApiConsolePage() {
               onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
               className="py-1 hover:text-white transition-colors inline-flex items-center gap-1 min-h-[36px]"
             >
-              <ArrowUp className="w-3.5 h-3.5" />
+              <ArrowUp className="w-3.5 h-3.5" aria-hidden="true" />
               <span>Back to top</span>
             </button>
           </div>

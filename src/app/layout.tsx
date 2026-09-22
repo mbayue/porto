@@ -17,6 +17,7 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "Bayu Erich — Backend Engineer | API Console",
   description: "Portfolio of Bayu Erich, Backend Engineer in Indonesia. Served as an API: query endpoints for projects, experience, stack, and contact.",
+  themeColor: "#000000",
   icons: {
     icon: "/favicon.svg",
     shortcut: "/favicon.svg",
@@ -43,6 +44,12 @@ export default function RootLayout({
       className={`${firaCode.variable} ${inter.variable} bg-black text-[#ededed] antialiased`}
     >
       <body className="min-h-full bg-black">
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:absolute focus:z-[100] focus:bg-white focus:text-black focus:px-4 focus:py-2 focus:text-sm focus:font-medium"
+        >
+          Skip to content
+        </a>
         {children}
       </body>
     </html>

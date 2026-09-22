@@ -28,6 +28,20 @@
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 80px;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0.2);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+h1,
+h2,
+h3 {
+  text-wrap: balance;
 }
 
 body {
@@ -35,6 +49,9 @@ body {
   background: #000000;
   color: #ededed;
   font-family: var(--font-mono), Consolas, monospace;
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
+  padding-bottom: env(safe-area-inset-bottom);
 }
 
 ::selection {
