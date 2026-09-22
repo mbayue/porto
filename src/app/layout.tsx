@@ -29,7 +29,7 @@ export const metadata: Metadata = {
   authors: [{ name: "Bayu Erich", url: "https://github.com/mbayue" }],
   openGraph: {
     title: "Bayu Erich — Backend Engineer | API Console",
-    description: "Backend engineer in Tuban, Indonesia. This portfolio runs as an API. Pull projects, work history, and stack, or send a message that lands in my inbox.",
+    description: "Backend engineer in Tuban, Indonesia. 9 API endpoints. 7 shipped projects. Live GitHub data. Query it with curl.",
     url: "https://bayue.my.id",
     siteName: "bayue.my.id",
     type: "website",
@@ -45,7 +45,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Bayu Erich — Backend Engineer | API Console",
-    description: "Backend engineer in Tuban, Indonesia. This portfolio runs as an API. Pull projects, work history, and stack, or send a message that lands in my inbox.",
+    description: "Backend engineer in Tuban, Indonesia. 9 API endpoints. 7 shipped projects. Live GitHub data. Query it with curl.",
     images: ["/opengraph-image"],
   },
 };
