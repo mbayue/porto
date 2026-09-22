@@ -61,9 +61,11 @@ function JsonTree({ k, val, depth = 0 }: JsonNodeProps) {
 
   return (
     <div className="font-mono text-[13px] leading-relaxed">
-      <div
+      <button
+        type="button"
         onClick={() => setCollapsed(!collapsed)}
-        className="cursor-pointer hover:bg-[#161616] -mx-2 px-2 py-0.5 rounded-[2px] transition-colors flex items-baseline gap-2 group select-none"
+        aria-expanded={!collapsed}
+        className="cursor-pointer hover:bg-[#161616] -mx-2 px-2 py-0.5 rounded-[2px] transition-colors flex items-baseline gap-2 group select-none w-full text-left"
       >
         {k !== null && (
           <>
@@ -76,7 +78,7 @@ function JsonTree({ k, val, depth = 0 }: JsonNodeProps) {
           {count} {isArr ? (count === 1 ? "item" : "items") : (count === 1 ? "key" : "keys")}
         </span>
         {collapsed && <span className="text-[#8a8a8a]">... {closeBracket}</span>}
-      </div>
+      </button>
 
       {!collapsed && (
         <div className="pl-4 ml-1.5 border-l border-[#222222] my-0.5 space-y-0.5">
@@ -135,6 +137,24 @@ export default function ApiConsolePage() {
     window.addEventListener("hashchange", handleHash);
     return () => window.removeEventListener("hashchange", handleHash);
   }, []);
+
+  // Deep-link viewMode via ?view=cards (default json omits param)
+  useEffect(() => {
+    const v = new URLSearchParams(window.location.search).get("view");
+    if (v === "cards" || v === "rendered") {
+      setViewMode("rendered");
+    }
+  }, []);
+
+  useEffect(() => {
+    const url = new URL(window.location.href);
+    if (viewMode === "rendered") {
+      url.searchParams.set("view", "cards");
+    } else {
+      url.searchParams.delete("view");
+    }
+    window.history.replaceState(null, "", url.toString());
+  }, [viewMode]);
 
   const selectRoute = (path: string) => {
     setCurrentPath(path);
@@ -676,9 +696,10 @@ export default function ApiConsolePage() {
         {/* Below Console: Architecture & Terminal Cards */}
         <section className="py-10 border-t border-[#181818] space-y-6">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div
+            <a
+              href="#/architecture"
               onClick={() => selectRoute("/architecture")}
-              className="p-5 border border-[#1c1c1c] bg-[#080808] hover:border-[#444444] transition-colors cursor-pointer group"
+              className="block p-5 border border-[#1c1c1c] bg-[#080808] hover:border-[#444444] transition-colors group"
             >
               <div className="text-xs text-white font-semibold flex items-center gap-1.5 group-hover:underline">
                 <Layers className="w-3.5 h-3.5" aria-hidden="true" />
@@ -687,11 +708,12 @@ export default function ApiConsolePage() {
               <p className="mt-2 text-xs text-[#888888] leading-relaxed">
                 Layered request lifecycle: reverse proxy, application runtime, databases, and background queue workers.
               </p>
-            </div>
+            </a>
 
-            <div
+            <a
+              href="#/projects"
               onClick={() => selectRoute("/projects")}
-              className="p-5 border border-[#1c1c1c] bg-[#080808] hover:border-[#444444] transition-colors cursor-pointer group"
+              className="block p-5 border border-[#1c1c1c] bg-[#080808] hover:border-[#444444] transition-colors group"
             >
               <div className="text-xs text-white font-semibold flex items-center gap-1.5 group-hover:underline">
                 <Code2 className="w-3.5 h-3.5" aria-hidden="true" />
@@ -700,11 +722,12 @@ export default function ApiConsolePage() {
               <p className="mt-2 text-xs text-[#888888] leading-relaxed">
                 Seven shipped tools and web applications with source repositories, stars, and technology stacks.
               </p>
-            </div>
+            </a>
 
-            <div
+            <a
+              href="#/messages"
               onClick={() => selectRoute("/messages")}
-              className="p-5 border border-[#1c1c1c] bg-[#080808] hover:border-[#444444] transition-colors cursor-pointer group"
+              className="block p-5 border border-[#1c1c1c] bg-[#080808] hover:border-[#444444] transition-colors group"
             >
               <div className="text-xs text-white font-semibold flex items-center gap-1.5 group-hover:underline">
                 <Mail className="w-3.5 h-3.5" aria-hidden="true" />
@@ -713,7 +736,7 @@ export default function ApiConsolePage() {
               <p className="mt-2 text-xs text-[#888888] leading-relaxed">
                 Interactive write endpoint. Dispatches a structured inquiry payload directly to my email address.
               </p>
-            </div>
+            </a>
           </div>
 
           {/* Terminal Curl Snippet */}

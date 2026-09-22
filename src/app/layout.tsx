@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Fira_Code, Inter } from "next/font/google";
 import "./globals.css";
 
@@ -17,7 +17,6 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "Bayu Erich — Backend Engineer | API Console",
   description: "Portfolio of Bayu Erich, Backend Engineer in Indonesia. Served as an API: query endpoints for projects, experience, stack, and contact.",
-  themeColor: "#000000",
   icons: {
     icon: "/favicon.svg",
     shortcut: "/favicon.svg",
@@ -31,6 +30,10 @@ export const metadata: Metadata = {
     url: "https://bayue.my.id",
     type: "website",
   },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#000000",
 };
 
 export default function RootLayout({
