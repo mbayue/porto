@@ -15,6 +15,9 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL ?? "https://bayue.my.id"
+  ),
   title: "Bayu Erich — Backend Engineer | API Console",
   description: "Portfolio of Bayu Erich, Backend Engineer in Indonesia. Served as an API: query endpoints for projects, experience, stack, and contact.",
   icons: {
@@ -26,9 +29,24 @@ export const metadata: Metadata = {
   authors: [{ name: "Bayu Erich", url: "https://github.com/mbayue" }],
   openGraph: {
     title: "Bayu Erich — Backend Engineer | API Console",
-    description: "Building reliable APIs and backend systems. Query endpoints for projects, experience, stack, and contact.",
+    description: "Backend engineer in Tuban, Indonesia. This portfolio runs as an API. Pull projects, work history, and stack, or send a message that lands in my inbox.",
     url: "https://bayue.my.id",
+    siteName: "bayue.my.id",
     type: "website",
+    images: [
+      {
+        url: "/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: "Bayu Erich — Backend Engineer API Console",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Bayu Erich — Backend Engineer | API Console",
+    description: "Backend engineer in Tuban, Indonesia. This portfolio runs as an API. Pull projects, work history, and stack, or send a message that lands in my inbox.",
+    images: ["/opengraph-image"],
   },
 };
 
