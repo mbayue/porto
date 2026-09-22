@@ -1,80 +1,95 @@
 # bayue.my.id
 
-Developer portfolio structured as an interactive **HTTP API Console** with an editorial brutalist monochrome design. Built with **Next.js 16**, **React 19**, **TypeScript**, and **Tailwind CSS v4**.
+Personal portfolio and public API for Bayu Erich. Works in the browser or via curl.
 
-## Architecture & Features
+Live at [bayue.my.id](https://bayue.my.id).
 
-- **Interactive API Console (`/`)** — Explorable JSON/Card endpoints simulating a live REST API (`/`, `/about`, `/architecture`, `/projects`, `/experience`, `/skills`, `/github`, `/contact`).
-- **Real REST API Routes (`/api/...`)** — Next.js Route Handlers delivering actual JSON payloads with CORS and health telemetry.
-- **Print-Ready CV (`/cv`)** — Clean editorial printable curriculum vitae with compact density toggle and `@media print` styling.
-- **Live GitHub Integration** — Fetches recent push events and resolves real commit messages via GitHub REST API with `GITHUB_PAT` / `GITHUB_TOKEN`.
-- **WCAG AA Compliant** — High contrast monochrome palette (`#000000`, `#8a8a8a`, `#EDEDED`), verified zero horizontal overflow across 320px–1440px viewports.
+## Endpoints
+
+Every route returns JSON when requested through `/api` or inspectable through the web UI.
+
+| Endpoint | Description |
+| --- | --- |
+| `/api` | Root status, response time, and available routes |
+| `/api/about` | Background, education, and current focus |
+| `/api/architecture` | System design, data flow, and runtime stack |
+| `/api/projects` | Production apps and open-source tools with links and metrics |
+| `/api/experience` | Work history and engineering roles |
+| `/api/skills` | Languages, runtimes, frameworks, and tools |
+| `/api/github` | Public GitHub push events with commit messages |
+| `/api/contact` | Email, LinkedIn, GitHub, and PGP key |
+
+Query directly:
+
+```bash
+# Service status
+curl -s https://bayue.my.id/api
+
+# Projects list
+curl -s https://bayue.my.id/api/projects
+
+# Live commit feed
+curl -s https://bayue.my.id/api/github
+```
+
+## Pages
+
+- `/` Web console with live route switching, JSON tree inspection, and formatted card views.
+- `/cv` Printable CV with clean type, compact toggle, and custom print styles (`Ctrl+P`).
 
 ## Tech Stack
 
-- **Framework:** Next.js 16 (App Router, Standalone Output)
-- **UI & Styling:** React 19, Tailwind CSS v4, Lucide React
+- **Framework:** Next.js 16 (App Router, standalone output)
+- **Frontend:** React 19, Tailwind CSS v4, Lucide icons
 - **Language:** TypeScript 5
 - **Package Manager:** Bun
-- **Container:** Docker (`oven/bun:1-alpine` build, `node:22-alpine` runner)
+- **Container:** Docker (`oven/bun:1-alpine` build, `node:22-alpine` run)
 
 ## Project Structure
 
 ```text
 porto/
-├── public/                 # Static assets (favicons, icons)
+├── public/                 # Static assets
 ├── src/
 │   ├── app/
-│   │   ├── api/            # Live REST API route handlers
-│   │   │   ├── [...route]/ # Dynamic endpoint dispatcher
-│   │   │   └── route.ts    # Service root handler
-│   │   ├── cv/             # Printable CV page (/cv)
-│   │   │   └── page.tsx
-│   │   ├── globals.css     # Tailwind v4 theme & print rules
-│   │   ├── layout.tsx      # Root metadata & fonts
-│   │   └── page.tsx        # Interactive API Console UI
+│   │   ├── api/            # Route handlers for /api and /api/[...route]
+│   │   ├── cv/             # Printable resume page
+│   │   ├── globals.css     # Tailwind v4 imports and print overrides
+│   │   ├── layout.tsx      # Root layout, metadata, fonts
+│   │   └── page.tsx        # API console web interface
 │   ├── data/
-│   │   ├── apiData.ts      # Canonical endpoint datasets & schemas
-│   │   └── profile.ts      # Core profile, bio, and social links
+│   │   ├── apiData.ts      # Endpoint content and responses
+│   │   └── profile.ts      # Core bio and social links
 │   └── lib/
-│       └── github.ts       # GitHub REST client with commit lookup
-├── Dockerfile              # Multi-stage Bun production container
-├── next.config.ts          # Standalone output configuration
-├── package.json            # Scripts & dependencies
-├── bun.lock                # Locked dependency tree
-└── tsconfig.json           # TypeScript configuration
+│       └── github.ts       # GitHub API client with commit resolution
+├── Dockerfile              # Multi-stage production container
+├── next.config.ts          # Standalone build settings
+├── package.json
+└── bun.lock
 ```
 
-## Local Development
+## Local Setup
 
-### Prerequisites
+### Requirements
 
-- [Bun](https://bun.sh) 1.2+ (or Node.js 20+)
+- Bun 1.2+
 
-### Install Dependencies
+### Run Locally
 
 ```bash
+# Install dependencies
 bun install --frozen-lockfile
-```
 
-### Environment Variables
+# Optional: Add GitHub token for higher API rate limits
+echo "GITHUB_PAT=your_token_here" > .env.local
 
-Create a `.env` or `.env.local` file:
-
-```env
-# Optional: GitHub Personal Access Token to avoid rate limits on /github
-GITHUB_PAT=your_github_pat_token
-```
-
-### Run Dev Server
-
-```bash
+# Start dev server
 bun run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) (or `http://localhost:3001` if port 3000 is occupied).
+Open [http://localhost:3000](http://localhost:3000).
 
-### Build & Typecheck
+### Build
 
 ```bash
 bun run build
@@ -83,21 +98,24 @@ bun run lint
 
 ## Docker
 
-### Build Image
+Build the image:
 
 ```bash
 docker build -t porto .
 ```
 
-### Run Container
+Run the container:
 
 ```bash
 docker run -d --name porto -p 3000:3000 porto
 ```
 
-Access at [http://localhost:3000](http://localhost:3000).
+Test the running instance:
 
-## Deployment
+```bash
+curl http://localhost:3000/api
+```
 
-- **Vercel / Cloudflare:** Import repository directly. Next.js App Router defaults apply automatically.
-- **Docker VPS / Fly.io / Coolify:** Run the multi-stage Docker image using standalone output on port 3000.
+## License
+
+MIT
