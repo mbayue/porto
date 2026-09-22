@@ -62,3 +62,12 @@ design-system
 graphify-out
 .worktrees/
 .superpowers/
+docs/
+concepts/
+
+# playwright & test outputs
+output/
+.playwright-cli/
+playwright-cli.json
+playwright-report/
+test-results/

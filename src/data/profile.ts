@@ -6,8 +6,8 @@ export const profile = {
   email: "bayu.erich@gmail.com",
   linkedin: "https://www.linkedin.com/in/bayuerich/",
   github: "mbayue",
-  tagline: "Backend engineer who works mostly on APIs, databases, bug fixing, server maintenance, and practical software tools.",
-  summary: "I’m a backend engineer from Indonesia with experience maintaining production systems, reviewing backend code, deploying servers, and improving web applications. Most of my work has been around backend services, databases, bug fixing, and system reliability. Lately, I’ve also been exploring AI-assisted development and codebase visualization.",
+  tagline: "Backend engineer focused on APIs, database optimization, and server reliability.",
+  summary: "Backend engineer based in Tuban, Indonesia. I build REST APIs, tune database queries, deploy Linux servers, and write developer utilities in TypeScript, Go, and PostgreSQL. Previously led backend engineering at Orderfaz.",
   skills: {
     languages: ["JavaScript", "TypeScript", "Go", "Python"],
     backend: ["Node.js", "NestJS", "REST APIs"],
@@ -18,7 +18,7 @@ export const profile = {
   languages: [
     { name: "Bahasa Indonesia", level: "Native" },
     { name: "Bahasa Jawa", level: "Fluent" },
-    { name: "English", level: "Basic" },
+    { name: "English", level: "Working" },
   ],
   education: [
     {
@@ -29,7 +29,7 @@ export const profile = {
     {
       institution: "SMK Negeri 1 Tuban",
       degree: "Computer Systems Networking and Telecommunications",
-      year: "2015–2018",
+      year: "2015 - 2018",
     },
   ],
   experience: [
@@ -37,32 +37,32 @@ export const profile = {
       company: "Yue Shop",
       location: "Tuban, East Java",
       role: "Owner",
-      period: "Jan 2025 – Mar 2026",
+      period: "Jan 2025 - Mar 2026",
       responsibilities: [
-        "Operated an online digital store specializing in game top-ups and app purchases.",
-        "Handled vendor relations, customer support, and order fulfillment.",
+        "Operated an online digital storefront for game top-ups and digital products.",
+        "Handled vendor procurement, customer support, and order fulfillment.",
       ],
     },
     {
       company: "Orderfaz",
       location: "Bandung",
       role: "Software Engineer",
-      period: "Mar 2022 – May 2024",
+      period: "Mar 2022 - May 2024",
       responsibilities: [
-        "Lead, mentor, and manage a high-performing backend team, fostering a collaborative and results-driven work environment.",
-        "Review backend code contributions from team members.",
-        "Deploy and maintained backend and frontend servers.",
-        "Perform maintenance, bug fixing, and application development for Orderfaz and partner apps such as Apikurir.",
+        "Led backend team building core checkout and payment webhook services.",
+        "Reviewed pull requests and enforced architecture guidelines.",
+        "Deployed and maintained production Linux instances on AWS.",
+        "Fixed production bugs and maintained integrations for Orderfaz and Apikurir.",
       ],
     },
     {
       company: "Nashta Global Utama",
       location: "Jakarta",
       role: "Backend Developer",
-      period: "Jun 2021 – Dec 2021",
+      period: "Jun 2021 - Dec 2021",
       responsibilities: [
-        "Handle maintenance, bug fixing, and development of the 2nd generation SINSW system.",
-        "Contributed to applications such as the Pemberitahuan Jasa Kawasan Ekonomi Khusus (PJKEK) and Sistem Nasional Neraca Komoditas (SINAS NK).",
+        "Maintained and patched the 2nd generation SINSW national logistics platform.",
+        "Built backend modules for PJKEK and SINAS NK economic trade applications.",
       ],
     },
   ],
