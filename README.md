@@ -17,7 +17,7 @@ A modern, interactive developer portfolio built with **Next.js**, **React**, **T
 - **Framework:** Next.js App Router
 - **UI:** React, Tailwind CSS, Framer Motion, Lucide React
 - **Language:** TypeScript
-- **Package Manager:** Bun (the existing pnpm lockfile remains for the Docker workflow)
+- **Package Manager:** Bun
 - **Runtime:** Node.js
 - **Container:** Docker / standalone Next.js output
 
@@ -41,7 +41,7 @@ porto/
 ├── Dockerfile              # Production container image
 ├── next.config.ts          # Next.js config
 ├── package.json            # Scripts + dependencies
-├── pnpm-lock.yaml          # Locked dependency graph
+├── bun.lock                # Locked dependency graph
 ├── tsconfig.json           # TypeScript config
 └── README.md
 ```
@@ -111,7 +111,7 @@ Open:
 http://localhost:3000
 ```
 
-The Dockerfile builds the app with pnpm, uses Next.js standalone output, and runs the production server on port `3000`.
+The Dockerfile builds the app with Bun, uses Next.js standalone output, and runs the production server on port `3000`.
 
 ## Deployment
 
