@@ -96,7 +96,7 @@ export async function getLiveGithubData() {
             message = `Forked repository`;
           }
 
-          const dateStr = new Date(e.created_at).toLocaleDateString("en-US", {
+          const dateStr = new Date(e.created_at).toLocaleDateString(undefined, {
             month: "short",
             day: "numeric",
             timeZone: "UTC",
@@ -118,7 +118,7 @@ export async function getLiveGithubData() {
       following: userData.following,
       public_gists: userData.public_gists,
       profile_url: userData.html_url,
-      account_created: new Date(userData.created_at).toLocaleDateString("en-US", {
+      account_created: new Date(userData.created_at).toLocaleDateString(undefined, {
         year: "numeric",
         month: "short",
       }),

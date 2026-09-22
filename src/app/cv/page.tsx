@@ -267,7 +267,7 @@ export default function CvPage() {
 
         {/* Footer */}
         <footer className={`border-t-2 border-[#16181d] flex flex-wrap justify-between items-center gap-4 font-mono text-xs text-[#5c626b] ${compact ? "mt-4 pt-2" : "mt-8 pt-4"}`}>
-          <p>© {new Date().getFullYear()} Bayu Erich. Built in Indonesia.</p>
+          <p>© {new Intl.DateTimeFormat(undefined, { year: "numeric" }).format(new Date())} Bayu Erich. Built in Indonesia.</p>
           <div className="flex items-center gap-4">
             <Link href="/" className="hover:text-black underline underline-offset-2">
               API Console (bayue.my.id)

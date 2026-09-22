@@ -243,7 +243,7 @@ export default function ApiConsolePage() {
           </h1>
 
           <p className="mt-5 text-[#888888] text-sm sm:text-base max-w-2xl leading-relaxed">
-            I'm <b className="text-white font-medium">Bayu Erich</b>, a backend engineer based in Tuban, Indonesia. I build APIs, optimize database queries, and deploy production services on Linux. This portfolio runs as a queryable API console.
+            I’m <b className="text-white font-medium">Bayu Erich</b>, a backend engineer based in Tuban, Indonesia. I build APIs, optimize database queries, and deploy production services on Linux. This portfolio runs as a queryable API console.
           </p>
 
           <div className="mt-7 flex flex-wrap gap-2.5">
@@ -259,7 +259,7 @@ export default function ApiConsolePage() {
               className="px-4 py-2 bg-white text-black font-medium text-xs hover:bg-[#e0e0e0] transition-colors inline-flex items-center gap-2"
             >
               <Terminal className="w-3.5 h-3.5" aria-hidden="true" />
-              <span>Explore endpoints</span>
+              <span>Explore Endpoints</span>
             </button>
 
             <button
@@ -276,7 +276,7 @@ export default function ApiConsolePage() {
               className="px-4 py-2 border border-[#222222] text-[#888888] hover:text-white hover:border-white transition-colors text-xs inline-flex items-center gap-1.5"
             >
               <Mail className="w-3.5 h-3.5" aria-hidden="true" />
-              <span>Let's talk</span>
+              <span>Let’s talk</span>
             </a>
           </div>
 
@@ -380,7 +380,7 @@ export default function ApiConsolePage() {
                     className="border border-[#222222] px-3 py-1.5 min-h-[32px] sm:min-h-[30px] text-xs text-[#8a8a8a] hover:text-white hover:border-white transition-colors inline-flex items-center gap-1.5"
                   >
                     {copiedCurl ? <Check className="w-3.5 h-3.5 text-[#03b000]" aria-hidden="true" /> : <Copy className="w-3.5 h-3.5" aria-hidden="true" />}
-                    <span aria-live="polite">{copiedCurl ? "Copied" : "curl"}</span>
+                    <span aria-live="polite">{copiedCurl ? "Copied curl" : "Copy curl"}</span>
                   </button>
 
                   <button
@@ -389,7 +389,7 @@ export default function ApiConsolePage() {
                     className="border border-[#222222] px-3 py-1.5 min-h-[32px] sm:min-h-[30px] text-xs text-[#8a8a8a] hover:text-white hover:border-white transition-colors inline-flex items-center gap-1.5"
                   >
                     {copiedJson ? <Check className="w-3.5 h-3.5 text-[#03b000]" aria-hidden="true" /> : <Code2 className="w-3.5 h-3.5" aria-hidden="true" />}
-                    <span aria-live="polite">{copiedJson ? "Copied" : "JSON"}</span>
+                    <span aria-live="polite">{copiedJson ? "Copied JSON" : "Copy JSON"}</span>
                   </button>
                 </div>
               </div>
@@ -507,7 +507,7 @@ export default function ApiConsolePage() {
                     {currentPath === "/projects" ? (
                       <div className="space-y-3">
                         <div className="text-xs text-[#888888] pb-2 border-b border-[#222222]">
-                          Seven shipped engineering projects
+                          7 shipped engineering projects
                         </div>
                         {responseData.data?.map((p: any) => (
                           <div key={p.name} className="p-3 border border-[#222222] bg-[#0f0f0f]">
@@ -797,7 +797,7 @@ export default function ApiConsolePage() {
 
         {/* Footer */}
         <footer className="py-8 border-t border-[#181818] flex flex-wrap items-center justify-between gap-4 text-xs text-[#8a8a8a]">
-          <p>© {new Date().getFullYear()} Bayu Erich. Built in Indonesia.</p>
+          <p>© {new Intl.DateTimeFormat(undefined, { year: "numeric" }).format(new Date())} Bayu Erich. Built in Indonesia.</p>
           <div className="flex items-center gap-6">
             <Link href="/cv" className="py-1 hover:text-white transition-colors underline underline-offset-2 inline-flex items-center min-h-[36px]">
               Printable CV (/cv)
