@@ -45,7 +45,7 @@ function JsonTree({ k, val, depth = 0 }: JsonNodeProps) {
       <div className="font-mono text-[13px] leading-relaxed flex flex-wrap items-baseline break-all [overflow-wrap:anywhere]">
         {k !== null && (
           <>
-            <span className="text-[#c8c8c8]">"{k}"</span>
+            <span className="text-[#c8c8c8]">&quot;{k}&quot;</span>
             <span className="text-[#8a8a8a] mr-2">:</span>
           </>
         )}
@@ -69,7 +69,7 @@ function JsonTree({ k, val, depth = 0 }: JsonNodeProps) {
       >
         {k !== null && (
           <>
-            <span className="text-[#c8c8c8]">"{k}"</span>
+            <span className="text-[#c8c8c8]">&quot;{k}&quot;</span>
             <span className="text-[#8a8a8a]">:</span>
           </>
         )}
@@ -258,11 +258,9 @@ export default function ApiConsolePage() {
             <button
               type="button"
               onClick={() => {
-                const el = document.getElementById("console");
-                if (el) {
-                  const y = el.getBoundingClientRect().top + window.scrollY - 80;
-                  window.scrollTo({ top: y, behavior: "smooth" });
-                }
+                document
+                  .getElementById("console")
+                  ?.scrollIntoView({ behavior: "smooth", block: "start" });
               }}
               className="px-4 py-2 bg-white text-black font-medium text-xs hover:bg-[#e0e0e0] transition-colors inline-flex items-center gap-2"
             >
@@ -552,7 +550,7 @@ export default function ApiConsolePage() {
                         {responseData.data?.map((exp: any) => (
                           <div key={exp.company} className="p-4 border border-[#222222] bg-[#0f0f0f]">
                             <div className="flex justify-between items-baseline">
-                              <h3 className="text-sm font-semibold text-white">{exp.company}</h3>
+                              <h2 className="text-sm font-semibold text-white">{exp.company}</h2>
                               <span className="text-xs text-[#888888]">{exp.period}</span>
                             </div>
                             <div className="text-xs text-[#aaaaaa] mt-0.5">{exp.role} • {exp.location}</div>
@@ -764,16 +762,16 @@ export default function ApiConsolePage() {
             <div className="text-[#8a8a8a] select-none"># Query live from your own terminal</div>
             <div className="mt-1 text-white font-medium flex items-center gap-2">
               <span className="text-[#03b000] select-none">$</span>
-              <span translate="no">curl -s https://bayue.my.id/api/projects | jq '.data[].name'</span>
+              <span translate="no">curl -s https://bayue.my.id/api/projects | jq &apos;.data[].name&apos;</span>
             </div>
             <div className="mt-2 text-[#888888] space-y-0.5">
-              <div>"gitSdm"</div>
-              <div>"pia-scrap"</div>
-              <div>"sketchbook_"</div>
-              <div>"keking"</div>
-              <div>"novelpia-reader"</div>
-              <div>"pixeldrain-bypasser"</div>
-              <div>"porto"</div>
+              <div>&quot;gitSdm&quot;</div>
+              <div>&quot;pia-scrap&quot;</div>
+              <div>&quot;sketchbook_&quot;</div>
+              <div>&quot;keking&quot;</div>
+              <div>&quot;novelpia-reader&quot;</div>
+              <div>&quot;pixeldrain-bypasser&quot;</div>
+              <div>&quot;porto&quot;</div>
             </div>
           </div>
 
