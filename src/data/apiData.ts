@@ -108,7 +108,7 @@ export const API_DATA: Record<string, any> = {
         category: "web app",
         description: "Single-page art gallery showcasing sketches and finished illustrations.",
         tags: ["React", "Vite", "Tailwind CSS"],
-        url: "https://sketchbook.bayue.my.id"
+        url: "https://sketch.my.id"
       },
       {
         name: "keking",

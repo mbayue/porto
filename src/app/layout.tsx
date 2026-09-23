@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/opengraph-image",
+        url: "/og-image.webp",
         width: 1200,
         height: 630,
         alt: "Bayu Erich — Backend Engineer API Console",
@@ -46,7 +46,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Bayu Erich — Backend Engineer | API Console",
     description: "Backend engineer in Tuban, Indonesia. 9 API endpoints. 7 shipped projects. Live GitHub data. Query it with curl.",
-    images: ["/opengraph-image"],
+    images: ["/og-image.webp"],
   },
 };
 
