@@ -1,5 +1,47 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { API_DATA } from "@/data/apiData";
 import { profile } from "@/data/profile";
+
+
+async function getCommitMessagesGraphQL(eventsToFetch: any[], headers: Record<string, string>) {
+  if (eventsToFetch.length === 0) return {};
+
+  let query = "query {\n";
+  eventsToFetch.forEach((e, i) => {
+    const [owner, name] = e.repo.name.split("/");
+    query += `  repo${i}: repository(owner: "${owner}", name: "${name}") {
+    object(oid: "${e.payload.head}") {
+      ... on Commit { message }
+    }
+  }\n`;
+  });
+  query += "}";
+
+  try {
+    const res = await fetch("https://api.github.com/graphql", {
+      method: "POST",
+      headers: {
+        ...headers,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ query }),
+      signal: AbortSignal.timeout(5000),
+      next: { revalidate: 3600 },
+    });
+    if (!res.ok) return {};
+    const { data } = await res.json();
+    const results: Record<string, string> = {};
+    if (data) {
+      eventsToFetch.forEach((e, i) => {
+        const msg = data[`repo${i}`]?.object?.message;
+        if (msg) results[e.payload.head] = msg;
+      });
+    }
+    return results;
+  } catch {
+    return {};
+  }
+}
 
 async function getCommitMessage(repoName: string, sha: string, headers: Record<string, string>) {
   try {
@@ -56,29 +98,63 @@ export async function getLiveGithubData() {
     if (eventsRes.status === "fulfilled" && eventsRes.value.ok) {
       const events = await eventsRes.value.json();
       if (Array.isArray(events) && events.length > 0) {
-        recentActivity = await Promise.all(
-          events.slice(0, 6).map(async (e: any) => {
-            let message = "Repository activity";
+        const slicedEvents = events.slice(0, 6);
+        let commitMessageMap: Record<string, string> = {};
 
-            if (e.type === "PushEvent") {
-              const commits = Array.isArray(e.payload?.commits) ? e.payload.commits : [];
-              let commitMsg = commits.find((c: any) => c?.message && c.message.trim().length > 0)?.message;
+        const eventsToFetch = slicedEvents.filter((e: any) => {
+          if (e.type === "PushEvent") {
+            const commits = Array.isArray(e.payload?.commits) ? e.payload.commits : [];
+            const commitMsg = commits.find((c: any) => c?.message && c.message.trim().length > 0)?.message;
+            return !commitMsg && e.payload?.head && e.repo?.name;
+          }
+          return false;
+        });
 
-              // If event payload has no commit messages (standard GitHub behavior for pushes), fetch from commits API by head sha
-              if (!commitMsg && e.payload?.head && e.repo?.name) {
-                commitMsg = await getCommitMessage(e.repo.name, e.payload.head, headers);
-              }
+        if (eventsToFetch.length > 0) {
+          if (token) {
+            const graphQLMessages = await getCommitMessagesGraphQL(eventsToFetch, headers);
+            commitMessageMap = graphQLMessages;
+            const missingEvents = eventsToFetch.filter((e: any) => !commitMessageMap[e.payload.head]);
+            if (missingEvents.length > 0) {
+              const msgs = await Promise.all(
+                missingEvents.map((e: any) => getCommitMessage(e.repo.name, e.payload.head, headers))
+              );
+              missingEvents.forEach((e: any, i: number) => {
+                if (msgs[i]) commitMessageMap[e.payload.head] = msgs[i] as string;
+              });
+            }
+          } else {
+            const msgs = await Promise.all(
+              eventsToFetch.map((e: any) => getCommitMessage(e.repo.name, e.payload.head, headers))
+            );
+            eventsToFetch.forEach((e: any, i: number) => {
+              if (msgs[i]) commitMessageMap[e.payload.head] = msgs[i] as string;
+            });
+          }
+        }
 
-              if (commitMsg) {
-                message = commitMsg.split("\n")[0];
-              } else if (e.payload?.ref) {
-                const branch = e.payload.ref.replace("refs/heads/", "");
-                const count = e.payload.size || e.payload.distinct_size || commits.length;
-                message = count > 1 ? `Pushed ${count} commits to ${branch}` : `Pushed to ${branch}`;
-              } else {
-                message = "Pushed code changes";
-              }
-            } else if (e.type === "WatchEvent") {
+        recentActivity = slicedEvents.map((e: any) => {
+          let message = "Repository activity";
+
+          if (e.type === "PushEvent") {
+            const commits = Array.isArray(e.payload?.commits) ? e.payload.commits : [];
+            let commitMsg = commits.find((c: any) => c?.message && c.message.trim().length > 0)?.message;
+
+            // If event payload has no commit messages (standard GitHub behavior for pushes), fetch from commits API by head sha
+            if (!commitMsg && e.payload?.head && e.repo?.name) {
+              commitMsg = commitMessageMap[e.payload.head];
+            }
+
+            if (commitMsg) {
+              message = commitMsg.split("\n")[0];
+            } else if (e.payload?.ref) {
+              const branch = e.payload.ref.replace("refs/heads/", "");
+              const count = e.payload.size || e.payload.distinct_size || commits.length;
+              message = count > 1 ? `Pushed ${count} commits to ${branch}` : `Pushed to ${branch}`;
+            } else {
+              message = "Pushed code changes";
+            }
+          } else if (e.type === "WatchEvent") {
             message = "Starred repository";
           } else if (e.type === "CreateEvent") {
             const refType = e.payload?.ref_type || "repository";
@@ -102,15 +178,16 @@ export async function getLiveGithubData() {
             timeZone: "UTC",
           });
 
-            return {
-              repo: e.repo?.name || "mbayue",
-              date: dateStr,
-              message,
-            };
-          })
-        );
+          return {
+            repo: e.repo?.name || "mbayue",
+            date: dateStr,
+            message,
+          };
+        });
       }
     }
+
+
 
     return {
       public_repositories: userData.public_repos,
