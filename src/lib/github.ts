@@ -112,7 +112,17 @@ export async function getLiveGithubData() {
 
         if (eventsToFetch.length > 0) {
           if (token) {
-            commitMessageMap = await getCommitMessagesGraphQL(eventsToFetch, headers);
+            const graphQLMessages = await getCommitMessagesGraphQL(eventsToFetch, headers);
+            commitMessageMap = graphQLMessages;
+            const missingEvents = eventsToFetch.filter((e: any) => !commitMessageMap[e.payload.head]);
+            if (missingEvents.length > 0) {
+              const msgs = await Promise.all(
+                missingEvents.map((e: any) => getCommitMessage(e.repo.name, e.payload.head, headers))
+              );
+              missingEvents.forEach((e: any, i: number) => {
+                if (msgs[i]) commitMessageMap[e.payload.head] = msgs[i] as string;
+              });
+            }
           } else {
             const msgs = await Promise.all(
               eventsToFetch.map((e: any) => getCommitMessage(e.repo.name, e.payload.head, headers))
